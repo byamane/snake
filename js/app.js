@@ -19,6 +19,10 @@
 
 // const gameStatus = document.querySelector(".message")
 
+const body = document.querySelector("body")
+
+const lightDarkBtn = document.querySelector("#light-dark-button")
+
 /*----------------------------- Event Listeners -----------------------------*/
 
 // keydown (for movement via keyboard)
@@ -26,6 +30,8 @@
 // onclick (for movement on virtual keypad)
 
 // reset (to reset game)
+
+lightDarkBtn.addEventListener("click", toggleLightDark)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -74,3 +80,18 @@
 // Point total should be sum of total snake pickups
 
 // Highest score should remain on screen indefinitely even upon user resetting the game (only current score should reset)
+
+function toggleLightDark() {
+  body.className = body.className === "dark" ? "" : "dark"
+}
+
+function checkDarkPref() {
+  if (
+    window.matchMedia("(prefers-color-scheme:dark)").matches &&
+    body.className !== "dark"
+  ) {
+    toggleLightDark()
+  }
+}
+
+checkDarkPref()
