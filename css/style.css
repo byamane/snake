@@ -74,6 +74,7 @@ header > h1 {
 #scores {
   background-color: rgb(210, 171, 255);
   border: 1.5px solid purple;
+  border-radius: 7px;
 }
 
 h2 {

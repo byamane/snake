@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 
-// const speed
+const speed = 0;
 
 
 /*-------------------------------- Variables --------------------------------*/
@@ -32,6 +32,8 @@ const lightDarkBtn = document.querySelector("#light-dark-button")
 // reset (to reset game)
 
 lightDarkBtn.addEventListener("click", toggleLightDark)
+
+document.addEventListener('keydown', arrowMovement)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -97,7 +99,24 @@ function init(){
   
   }
 
-
+function arrowMovement(evt){
+// When ArrowUp is pressed, move snake up
+  if (evt.key === 'ArrowUp') {
+    console.log("move up")
+  }
+// When ArrowDown is pressed, move snake down
+  if (evt.key === 'ArrowDown') {
+    console.log("move down")
+  }
+// When ArrowLeft is pressed, move snake left
+  if (evt.key === 'ArrowLeft') {
+    console.log("move left")
+  }
+// When ArrowRight is pressed, move snake right
+  if (evt.key === 'ArrowRight') {
+    console.log("move right")
+  }
+}
 
 
 
