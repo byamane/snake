@@ -102,19 +102,19 @@ function init(){
 function arrowMovement(evt){
 // When ArrowUp is pressed, move snake up
   if (evt.key === 'ArrowUp') {
-    console.log("move up")
+    setTimeout(() => console.log("move up"), 1000)
   }
 // When ArrowDown is pressed, move snake down
   if (evt.key === 'ArrowDown') {
-    console.log("move down")
+    setTimeout(() => console.log("move down"), 1000)
   }
 // When ArrowLeft is pressed, move snake left
   if (evt.key === 'ArrowLeft') {
-    console.log("move left")
+    setTimeout(() => console.log("move left"), 1000)
   }
 // When ArrowRight is pressed, move snake right
   if (evt.key === 'ArrowRight') {
-    console.log("move right")
+    setTimeout(() => console.log("move right"), 1000)
   }
 }
 

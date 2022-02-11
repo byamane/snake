@@ -38,6 +38,13 @@ body {
   align-items: center;
   justify-content: center;
   /* font-family: var(--serif) */
+
+  /* snake styling */
+  --snake-border: rgb(146, 255, 146);;
+  --snake-background-color: green;
+  /* pickup styling */
+  --pickup-border: rgb(255, 128, 128);
+  --pickup-background-color: red;  
 }
 
 body.dark {
@@ -114,6 +121,19 @@ h2 {
   border:1px solid #1d1e2b;
   opacity: 20%;
 }
+
+.pickup {
+  border:1px solid var(--pickup-border);
+  background-color: var(--pickup-background-color);
+  /* border-radius: 300px 150px 300px 150px; */
+}
+
+.snake {
+  border:1px solid var(--snake-border);
+  background-color: var(--snake-background-color);
+  /* border-radius: 200px 150px 150px 200px; */
+}
+
 
 #light-dark-button {
   background-color: var(--light-dark-btn-bg);
