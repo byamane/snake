@@ -53,6 +53,49 @@ body.dark {
   background-color: var(--body-bg);
 }
 
+header {
+  background-color: var(--header-bg);
+  /* font-family: var(--serif); */
+  font-weight: 700;
+  margin: 1.2rem 0;
+  padding: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+header > h1 {
+  font-weight: 700;
+  margin: 1.2rem 0;
+  padding: 1.2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#scores {
+  background-color: rgb(210, 171, 255);
+  border: 1.5px solid purple;
+}
+
+h2 {
+  display: inline-block;
+}
+
+#current {
+  text-align:left;
+  margin-left: 10px;
+  margin-right: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#highest {
+  text-align:right;
+  margin-left: 30px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .board {
   display: grid;
   grid-template-rows: repeat(10, 1fr);
@@ -71,14 +114,6 @@ body.dark {
   opacity: 20%;
 }
 
-header {
-  background-color: var(--header-bg);
-  /* font-family: var(--serif); */
-  font-weight: 700;
-  margin: 1.2rem 0;
-  padding: 1.2rem;
-}
-
 #light-dark-button {
   background-color: var(--light-dark-btn-bg);
   background-image: var(--light-dark-btn-bg);
@@ -88,4 +123,6 @@ header {
   border: none;
   color: var(--inverted-btn-text-color);
   content: var(--light-dark-btn-content);
+  height: 5vh;
+  width: 5vh;
 }

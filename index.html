@@ -27,12 +27,16 @@
 </head>
 <body>
   <header>
-    <h1>Snake</h1>
-    <img src="/assets/snakeFavicon.png" width="100" alt="Snake">
     <button id="light-dark-button" class="btn"></button>
+    <h1>Snake</h1>
+    <img src="/assets/snakeFavicon.png" height="50" alt="Snake">
   </header>
   <main>
-	  <section class="board">
+    <div id="scores">
+      <h2 id = "current">Current Score:    </h2>
+      <h2 id = "highest">Highest Score:    </h2>
+	  </div>
+    <section class="board">
       <div class="cell" id="r1c1"></div>
       <div class="cell" id="r1c2"></div>
       <div class="cell" id="r1c3"></div>
@@ -153,8 +157,7 @@
       <div class="cell" id="r10c10"></div>
       <div class="cell" id="r10c11"></div>
       <div class="cell" id="r10c12"></div>
+	  </section>
   </main>
-
-	</section>
 </body>
 </html>

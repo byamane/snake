@@ -82,8 +82,20 @@ lightDarkBtn.addEventListener("click", toggleLightDark)
 // Highest score should remain on screen indefinitely even upon user resetting the game (only current score should reset)
 
 function init(){
-  board = [null,null,null,null]
-}
+  board = 
+  [null,null,null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null]
+  
+  
+  }
 
 
 
