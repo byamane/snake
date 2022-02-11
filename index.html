@@ -26,18 +26,135 @@
 	<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-  <h1>Snake</h1>
-  <button id="light-dark-button" class="btn"></button>
-	<section class="board">
-		<div id="sq0"></div>
-		<div id="sq1"></div>
-		<div id="sq2"></div>
-		<div id="sq3"></div>
-		<div id="sq4"></div>
-		<div id="sq5"></div>
-		<div id="sq6"></div>
-		<div id="sq7"></div>
-		<div id="sq8"></div>
+  <header>
+    <h1>Snake</h1>
+    <img src="/assets/snakeFavicon.png" width="100" alt="Snake">
+    <button id="light-dark-button" class="btn"></button>
+  </header>
+  <main>
+	  <section class="board">
+      <div class="cell" id="r1c1"></div>
+      <div class="cell" id="r1c2"></div>
+      <div class="cell" id="r1c3"></div>
+      <div class="cell" id="r1c4"></div>
+      <div class="cell" id="r1c5"></div>
+      <div class="cell" id="r1c6"></div>
+      <div class="cell" id="r1c7"></div>
+      <div class="cell" id="r1c8"></div>
+      <div class="cell" id="r1c9"></div>
+      <div class="cell" id="r1c10"></div>
+      <div class="cell" id="r1c11"></div>
+      <div class="cell" id="r1c12"></div>
+      <div class="cell" id="r2c1"></div>
+      <div class="cell" id="r2c2"></div>
+      <div class="cell" id="r2c3"></div>
+      <div class="cell" id="r2c4"></div>
+      <div class="cell" id="r2c5"></div>
+      <div class="cell" id="r2c6"></div>
+      <div class="cell" id="r2c7"></div>
+      <div class="cell" id="r2c8"></div>
+      <div class="cell" id="r2c9"></div>
+      <div class="cell" id="r2c10"></div>
+      <div class="cell" id="r2c11"></div>
+      <div class="cell" id="r2c12"></div>
+      <div class="cell" id="r3c1"></div>
+      <div class="cell" id="r3c2"></div>
+      <div class="cell" id="r3c3"></div>
+      <div class="cell" id="r3c4"></div>
+      <div class="cell" id="r3c5"></div>
+      <div class="cell" id="r3c6"></div>
+      <div class="cell" id="r3c7"></div>
+      <div class="cell" id="r3c8"></div>
+      <div class="cell" id="r3c9"></div>
+      <div class="cell" id="r3c10"></div>
+      <div class="cell" id="r3c11"></div>
+      <div class="cell" id="r3c12"></div>
+      <div class="cell" id="r4c1"></div>
+      <div class="cell" id="r4c2"></div>
+      <div class="cell" id="r4c3"></div>
+      <div class="cell" id="r4c4"></div>
+      <div class="cell" id="r4c5"></div>
+      <div class="cell" id="r4c6"></div>
+      <div class="cell" id="r4c7"></div>
+      <div class="cell" id="r4c8"></div>
+      <div class="cell" id="r4c9"></div>
+      <div class="cell" id="r4c10"></div>
+      <div class="cell" id="r4c11"></div>
+      <div class="cell" id="r4c12"></div>
+      <div class="cell" id="r5c1"></div>
+      <div class="cell" id="r5c2"></div>
+      <div class="cell" id="r5c3"></div>
+      <div class="cell" id="r5c4"></div>
+      <div class="cell" id="r5c5"></div>
+      <div class="cell" id="r5c6"></div>
+      <div class="cell" id="r5c7"></div>
+      <div class="cell" id="r5c8"></div>
+      <div class="cell" id="r5c9"></div>
+      <div class="cell" id="r5c10"></div>
+      <div class="cell" id="r5c11"></div>
+      <div class="cell" id="r5c12"></div>
+      <div class="cell" id="r6c1"></div>
+      <div class="cell" id="r6c2"></div>
+      <div class="cell" id="r6c3"></div>
+      <div class="cell" id="r6c4"></div>
+      <div class="cell" id="r6c5"></div>
+      <div class="cell" id="r6c6"></div>
+      <div class="cell" id="r6c7"></div>
+      <div class="cell" id="r6c8"></div>
+      <div class="cell" id="r6c9"></div>
+      <div class="cell" id="r6c10"></div>
+      <div class="cell" id="r6c11"></div>
+      <div class="cell" id="r6c12"></div>
+      <div class="cell" id="r7c1"></div>
+      <div class="cell" id="r7c2"></div>
+      <div class="cell" id="r7c3"></div>
+      <div class="cell" id="r7c4"></div>
+      <div class="cell" id="r7c5"></div>
+      <div class="cell" id="r7c6"></div>
+      <div class="cell" id="r7c7"></div>
+      <div class="cell" id="r7c8"></div>
+      <div class="cell" id="r7c9"></div>
+      <div class="cell" id="r7c10"></div>
+      <div class="cell" id="r7c11"></div>
+      <div class="cell" id="r7c12"></div>
+      <div class="cell" id="r8c1"></div>
+      <div class="cell" id="r8c2"></div>
+      <div class="cell" id="r8c3"></div>
+      <div class="cell" id="r8c4"></div>
+      <div class="cell" id="r8c5"></div>
+      <div class="cell" id="r8c6"></div>
+      <div class="cell" id="r8c7"></div>
+      <div class="cell" id="r8c8"></div>
+      <div class="cell" id="r8c9"></div>
+      <div class="cell" id="r8c10"></div>
+      <div class="cell" id="r8c11"></div>
+      <div class="cell" id="r8c12"></div>
+      <div class="cell" id="r9c1"></div>
+      <div class="cell" id="r9c2"></div>
+      <div class="cell" id="r9c3"></div>
+      <div class="cell" id="r9c4"></div>
+      <div class="cell" id="r9c5"></div>
+      <div class="cell" id="r9c6"></div>
+      <div class="cell" id="r9c7"></div>
+      <div class="cell" id="r9c8"></div>
+      <div class="cell" id="r9c9"></div>
+      <div class="cell" id="r9c10"></div>
+      <div class="cell" id="r9c11"></div>
+      <div class="cell" id="r9c12"></div>
+      <div class="cell" id="r10c1"></div>
+      <div class="cell" id="r10c2"></div>
+      <div class="cell" id="r10c3"></div>
+      <div class="cell" id="r10c4"></div>
+      <div class="cell" id="r10c5"></div>
+      <div class="cell" id="r10c6"></div>
+      <div class="cell" id="r10c7"></div>
+      <div class="cell" id="r10c8"></div>
+      <div class="cell" id="r10c9"></div>
+      <div class="cell" id="r10c10"></div>
+      <div class="cell" id="r10c11"></div>
+      <div class="cell" id="r10c12"></div>
+  </main>
+
 	</section>
 </body>
 </html>

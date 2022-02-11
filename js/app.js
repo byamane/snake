@@ -5,15 +5,15 @@
 
 /*-------------------------------- Variables --------------------------------*/
 
-// let win, loss, currentScore, highScore, snakeColor, pickupColor
+let win, loss, currentScore, highScore, snakeColor, pickupColor
 
-// let board = [] (will be full of null squares with one square holding the value the pickup will be assigned to)
+let board = [] // (will be full of null squares with one square holding the value the pickup will be assigned to)
 
 /*------------------------ Cached Element References ------------------------*/
 
-//const snake = document.querySelector(".snake")
+// const snake = document.querySelector(".snake")
 
-// const squareEls = document.querySelectorAll(".squares")
+const squareEls = document.querySelectorAll("div")
 
 // const pickup = document.querySelector(".pickup")
 
@@ -35,7 +35,7 @@ lightDarkBtn.addEventListener("click", toggleLightDark)
 
 /*-------------------------------- Functions --------------------------------*/
 
-// init(), render(), currentScore(), highScore(), musicChange(), backgroundChange(), changeSnakeColor(), changePickupColor()
+// init(), play(), render(), currentScore(), highScore(), musicChange(), backgroundChange(), changeSnakeColor(), changePickupColor()
 
 /**************************************** User Stories *******************************************/
 
@@ -75,11 +75,21 @@ lightDarkBtn.addEventListener("click", toggleLightDark)
 
 // Within the render function, possibility to change background color theme/flashing colors to emphasize intensity in concert with music changes
 
-// Within the render function, when user crashes into wall or its own body, end the game
+// Within the play function, when user crashes into wall or its own body, end the game
 
 // Point total should be sum of total snake pickups
 
 // Highest score should remain on screen indefinitely even upon user resetting the game (only current score should reset)
+
+function init(){
+  board = [null,null,null,null]
+}
+
+
+
+
+
+
 
 function toggleLightDark() {
   body.className = body.className === "dark" ? "" : "dark"

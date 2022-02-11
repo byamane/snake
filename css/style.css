@@ -15,8 +15,8 @@ html {
    in most browser configurations this will be 10px */
 :root {
   font-size: 62.5%;
-  --cursive: 'Dancing Script', cursive;
-  --serif: 'Playfair Display', serif;
+  /* --cursive: 'Dancing Script', cursive;
+  --serif: 'Playfair Display', serif; */
 }
 
 body {
@@ -36,7 +36,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--serif)
+  justify-content: center;
+  /* font-family: var(--serif) */
 }
 
 body.dark {
@@ -52,13 +53,28 @@ body.dark {
   background-color: var(--body-bg);
 }
 
-h1 {
+.board {
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 0vmin;
+  background-color: rgb(116, 116, 116);
+  margin-top: 2vh;
+  border: 2px solid black;
+  border-radius: 7px;
+  height: 50vh;
+  width: 50vh;
+}
+
+.cell {
+  border:1px solid #1d1e2b;
+  opacity: 20%;
+}
+
+header {
   background-color: var(--header-bg);
-  font-family: var(--serif);
-  /* for most users this will display as 48px */
-  font-size: 4.8rem;
+  /* font-family: var(--serif); */
   font-weight: 700;
-  /* for most users the margin will be 12px */
   margin: 1.2rem 0;
   padding: 1.2rem;
 }
