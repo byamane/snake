@@ -11,13 +11,15 @@ let board = [] // (will be full of null squares with one square holding the valu
 
 /*------------------------ Cached Element References ------------------------*/
 
-// const snake = document.querySelector(".snake")
-
 const squareEls = document.querySelectorAll("div")
 
-// const pickup = document.querySelector(".pickup")
+const snake = document.querySelector(".snake")
+
+const pickup = document.querySelector(".pickup")
 
 // const gameStatus = document.querySelector(".message")
+
+const restartBtn = document.getElementById("restart")
 
 const body = document.querySelector("body")
 
@@ -25,14 +27,15 @@ const lightDarkBtn = document.querySelector("#light-dark-button")
 
 /*----------------------------- Event Listeners -----------------------------*/
 
-// keydown (for movement via keyboard)
-
 // onclick (for movement on virtual keypad)
 
-// reset (to reset game)
+// restart (to reset game)
+restartBtn.addEventListener("click", init)
 
+// light/dark mode
 lightDarkBtn.addEventListener("click", toggleLightDark)
 
+// keydown (for movement via keyboard)
 document.addEventListener('keydown', arrowMovement)
 
 /*-------------------------------- Functions --------------------------------*/
