@@ -125,12 +125,14 @@ h2 {
 .pickup {
   border:1px solid var(--pickup-border);
   background-color: var(--pickup-background-color);
+  opacity: 100%;
   /* border-radius: 300px 150px 300px 150px; */
 }
 
 .snake {
   border:1px solid var(--snake-border);
   background-color: var(--snake-background-color);
+  opacity: 100%;
   /* border-radius: 200px 150px 150px 200px; */
 }
 

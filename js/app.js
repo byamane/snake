@@ -1,6 +1,10 @@
 /*-------------------------------- Constants --------------------------------*/
 
-const speed = 0;
+const speed = 150;
+
+const numberOfRows = 10
+
+const numberOfColumns = 12
 
 
 /*-------------------------------- Variables --------------------------------*/
@@ -11,7 +15,7 @@ let board = [] // (will be full of null squares with one square holding the valu
 
 /*------------------------ Cached Element References ------------------------*/
 
-const squareEls = document.querySelectorAll("div")
+const allCells = document.querySelectorAll(".cell")
 
 const snake = document.querySelector(".snake")
 
@@ -24,6 +28,8 @@ const restartBtn = document.getElementById("restart")
 const body = document.querySelector("body")
 
 const lightDarkBtn = document.querySelector("#light-dark-button")
+
+const myStorage = window.localStorage 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -86,6 +92,8 @@ document.addEventListener('keydown', arrowMovement)
 
 // Highest score should remain on screen indefinitely even upon user resetting the game (only current score should reset)
 
+init()
+
 function init(){
   board = 
   [null,null,null,null,null,null,null,null,null,null,null,null,
@@ -97,38 +105,134 @@ function init(){
     null,null,null,null,null,null,null,null,null,null,null,null,
     null,null,null,null,null,null,null,null,null,null,null,null,
     null,null,null,null,null,null,null,null,null,null,null,null,
-    null,null,null,null,null,null,null,null,null,null,null,null]
+    null,null,null,null,null,null,null,null,null,null,null,"snake"]
   
-  
+  console.log(board[119])
+
+  currentScore = 0;
+  highScore = null;
+
+
+  // play()
+  // render()
   }
 
-function arrowMovement(evt){
-// When ArrowUp is pressed, move snake up
-  if (evt.key === 'ArrowUp') {
-    setTimeout(() => console.log("move up"), 1000)
+function play(){
+
+
+
+
+}
+
+function render(){
+
+
+
+
+highScore = localStorage.getItem("high-score")
+// Set high score
+if(highscore !== null){
+  if (currentScore > highScore) {
+      localStorage.setItem("high-score", highScore);      
   }
-// When ArrowDown is pressed, move snake down
-  if (evt.key === 'ArrowDown') {
-    setTimeout(() => console.log("move down"), 1000)
-  }
-// When ArrowLeft is pressed, move snake left
-  if (evt.key === 'ArrowLeft') {
-    setTimeout(() => console.log("move left"), 1000)
-  }
-// When ArrowRight is pressed, move snake right
-  if (evt.key === 'ArrowRight') {
-    setTimeout(() => console.log("move right"), 1000)
-  }
+}
+  else{
+    localStorage.setItem("high-score", highScore);
 }
 
 
+}
+
+// Arrow key event listeners for snake movement
+
+function arrowMovement(evt){
+  let removeSnakeClass = function(idx){
+    allCells[idx].classList.remove("snake")
+  }
+  // When ArrowUp is pressed, move snake up
+  if (evt.key === 'ArrowUp') {
+    // move snake up by 1
+    board.forEach((el, idx) => {
+      if (el === "snake"){
+        if ((parseInt(allCells[idx].id)) - numberOfColumns + 1 > numberOfColumns){
+          // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
+          removeSnakeClass(idx)
+          // assign new cell snake is in with the class of "cell snake"
+          allCells[idx - numberOfColumns].classList.add("snake")
+          // adjust board array to reflect value change in previous and current snake square
+          board[idx] = "null" 
+          board[idx - numberOfColumns] = "snake"
+        } else {
+            lose()
+          }
+      }
+    })
+  }
+}
+
+// function arrowMovement(evt){
+//   let removeSnakeClass = function(idx){
+//     allCells[idx].classList.remove("snake")
+//   }
+//   // When ArrowUp is pressed, move snake up
+//   if (evt.key === 'ArrowUp') {
+//     // move snake up by 1
+//     board.forEach((el, idx) => {
+//       if (el === "snake" && (parseInt(allCells[idx - numberOfColumns].id)) > numberOfColumns){
+//         // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
+//         removeSnakeClass(idx)
+//         // assign new cell snake is in with the class of "cell snake"
+//         allCells[idx - numberOfColumns].classList.add("snake")
+//           // adjust board array to reflect value change in previous and current snake square
+//           board[idx] = "null" 
+//           board[idx - numberOfColumns] = "snake"
+//         } else {
+//             console.log(parseInt(allCells[idx - numberOfColumns].id))
+//             // lose()
+//           }
+//       })
+//     }
+//   }
+
+
+function lose(){
+  alert("Game over")
+}
+
+  // if statement checking if (parseInt(el.id) < 12){
+  //   return
+  // } 
 
 
 
+// forEach to iterate through array
+  // if (element.className === "snake")
+    // classList.add to row above (id)
+    // classList.remove to row below (where snake was previously at)
+
+
+
+
+// // When ArrowDown is pressed, move snake down
+//   if (evt.key === 'ArrowDown') {
+//     setTimeout(() => console.log("move down"), speed)
+//   }
+// // When ArrowLeft is pressed, move snake left
+//   if (evt.key === 'ArrowLeft') {
+//     setTimeout(() => console.log("move left"), speed)
+//   }
+// // When ArrowRight is pressed, move snake right
+//   if (evt.key === 'ArrowRight') {
+//     setTimeout(() => console.log("move right"), speed)
+//   }
+// }
+
+// Light and dark mode functionality
 function toggleLightDark() {
   body.className = body.className === "dark" ? "" : "dark"
 }
 
+// Checking if the user has pre-established color scheme preference
 function checkDarkPref() {
   if (
     window.matchMedia("(prefers-color-scheme:dark)").matches &&
