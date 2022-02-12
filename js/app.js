@@ -148,9 +148,11 @@ if(highscore !== null){
 // Arrow key event listeners for snake movement
 
 function arrowMovement(evt){
+  
   let removeSnakeClass = function(idx){
     allCells[idx].classList.remove("snake")
   }
+  
   // When ArrowUp is pressed, move snake up
   if (evt.key === 'ArrowUp') {
     // move snake up by 1
@@ -173,6 +175,7 @@ function arrowMovement(evt){
         }
       }
     } 
+  
   // When ArrowDown is pressed, move snake down
   if (evt.key === 'ArrowDown') {
     // move snake down by 1
@@ -195,32 +198,52 @@ function arrowMovement(evt){
         }
       }
     }
-    // When ArrowLeft is pressed, move snake left
-    if (evt.key === 'ArrowLeft') {
-      // move snake down by 1
-      for (let idx = 0; idx < board.length; idx++) {
-        const el = board[idx]
-          if (el === "snake"){
-            // comparing positional change to occur vs. spaces available
-            if (((parseInt(allCells[idx].id)) - 1) >= 1 && allCells[idx].className !== "cell col1 snake"){
-              // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
-              removeSnakeClass(idx)
-              // assign new cell snake is in with the class of "cell snake"
-              allCells[idx - 1].classList.add("snake")
-              // adjust board array to reflect value change in previous and current snake square
-              board[idx] = null 
-              board[idx - 1] = "snake"
-              return
-          } else {
-                lose()
-            }
+  
+  // When ArrowLeft is pressed, move snake left
+  if (evt.key === 'ArrowLeft') {
+    // move snake left by 1
+    for (let idx = 0; idx < board.length; idx++) {
+      const el = board[idx]
+        if (el === "snake"){
+          // comparing positional change to occur vs. spaces available
+          if (((parseInt(allCells[idx].id)) - 1) >= 1 && allCells[idx].className !== "cell endLeft snake"){
+            // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
+            removeSnakeClass(idx)
+            // assign new cell snake is in with the class of "cell snake"
+            allCells[idx - 1].classList.add("snake")
+            // adjust board array to reflect value change in previous and current snake square
+            board[idx] = null 
+            board[idx - 1] = "snake"
+            return
+        } else {
+              lose()
           }
         }
       }
-
-
-
-
+    }
+  
+  // When ArrowRight is pressed, move snake right
+  if (evt.key === 'ArrowRight') {
+    // move snake right by 1
+    for (let idx = 0; idx < board.length; idx++) {
+      const el = board[idx]
+        if (el === "snake"){
+          // comparing positional change to occur vs. spaces available
+          if (((parseInt(allCells[idx].id)) + 1) <= (numberOfColumns * numberOfRows) && allCells[idx].className !== "cell endRight snake"){
+            // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
+            removeSnakeClass(idx)
+            // assign new cell snake is in with the class of "cell snake"
+            allCells[idx + 1].classList.add("snake")
+            // adjust board array to reflect value change in previous and current snake square
+            board[idx] = null 
+            board[idx + 1] = "snake"
+            return
+        } else {
+              lose()
+          }
+        }
+      }
+    }
   }
   
 
