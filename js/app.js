@@ -67,7 +67,6 @@ document.addEventListener('keydown', arrowMovement)
 
 /**************************************** PSEUDOCODE *********************************************/
 
-
 // User win condition is achieving a new high score. Loss condition is reached when user crashes into barrier (either wall or its own body)
 
 // Game will start on "key down" and listen for any key down events to navigate the game board
@@ -80,17 +79,19 @@ document.addEventListener('keydown', arrowMovement)
 
 // Upon the snake being at the same location of the pickup, add +1 starting div to end of snake
 
+// Within the play function, when user crashes into wall or its own body, end the game
+
 // Within the render function, score-dependent popups via if statements (i.e. small confetti for a score of 10, fireworks for a score of 30)
 
 // Within the render function, change music based off higher score thresholds via if statements (example: calmer music in lower scores -> more intense music as score gets higher)
 
 // Within the render function, possibility to change background color theme/flashing colors to emphasize intensity in concert with music changes
 
-// Within the play function, when user crashes into wall or its own body, end the game
-
 // Point total should be sum of total snake pickups
 
 // Highest score should remain on screen indefinitely even upon user resetting the game (only current score should reset)
+
+// Set a variable snakeIndex so that each arrow listener will just reference that variable, and not need to loop through the board each time before
 
 init()
 
@@ -108,6 +109,7 @@ function init(){
     null,null,null,null,null,null,null,null,null,null,null,"snake"]
   
   console.log(board[119])
+  console.log(numberOfColumns * numberOfRows)
 
   currentScore = 0;
   highScore = null;
@@ -152,80 +154,53 @@ function arrowMovement(evt){
   // When ArrowUp is pressed, move snake up
   if (evt.key === 'ArrowUp') {
     // move snake up by 1
-    board.forEach((el, idx) => {
-      if (el === "snake"){
-        if ((parseInt(allCells[idx].id)) - numberOfColumns + 1 > numberOfColumns){
-          // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
-          removeSnakeClass(idx)
-          // assign new cell snake is in with the class of "cell snake"
-          allCells[idx - numberOfColumns].classList.add("snake")
-          // adjust board array to reflect value change in previous and current snake square
-          board[idx] = "null" 
-          board[idx - numberOfColumns] = "snake"
+    for (let idx = 0; idx < board.length; idx++) {
+      const el = board[idx]
+        if (el === "snake"){
+          // comparing positional change to occur vs. spaces available
+          if ((parseInt(allCells[idx].id)) - numberOfColumns >= numberOfColumns){
+            // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
+            removeSnakeClass(idx)
+            // assign new cell snake is in with the class of "cell snake"
+            allCells[idx - numberOfColumns].classList.add("snake")
+            // adjust board array to reflect value change in previous and current snake square
+            board[idx] = null
+            board[idx - numberOfColumns] = "snake"
+            return
         } else {
             lose()
           }
+        }
       }
-    })
+    } 
+  // When ArrowDown is pressed, move snake down
+  if (evt.key === 'ArrowDown') {
+    // move snake down by 1
+    for (let idx = 0; idx < board.length; idx++) {
+      const el = board[idx]
+        if (el === "snake"){
+          // comparing positional change to occur vs. spaces available
+          if (((parseInt(allCells[idx].id)) + numberOfColumns) <= (numberOfColumns * numberOfRows)){
+            // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
+            removeSnakeClass(idx)
+            // assign new cell snake is in with the class of "cell snake"
+            allCells[idx + numberOfColumns].classList.add("snake")
+            // adjust board array to reflect value change in previous and current snake square
+            board[idx] = null 
+            board[idx + numberOfColumns] = "snake"
+            return
+        } else {
+              lose()
+          }
+        }
+      }
+    }
   }
-}
-
-// function arrowMovement(evt){
-//   let removeSnakeClass = function(idx){
-//     allCells[idx].classList.remove("snake")
-//   }
-//   // When ArrowUp is pressed, move snake up
-//   if (evt.key === 'ArrowUp') {
-//     // move snake up by 1
-//     board.forEach((el, idx) => {
-//       if (el === "snake" && (parseInt(allCells[idx - numberOfColumns].id)) > numberOfColumns){
-//         // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
-//         removeSnakeClass(idx)
-//         // assign new cell snake is in with the class of "cell snake"
-//         allCells[idx - numberOfColumns].classList.add("snake")
-//           // adjust board array to reflect value change in previous and current snake square
-//           board[idx] = "null" 
-//           board[idx - numberOfColumns] = "snake"
-//         } else {
-//             console.log(parseInt(allCells[idx - numberOfColumns].id))
-//             // lose()
-//           }
-//       })
-//     }
-//   }
-
+  
 
 function lose(){
   alert("Game over")
 }
-
-  // if statement checking if (parseInt(el.id) < 12){
-  //   return
-  // } 
-
-
-
-// forEach to iterate through array
-  // if (element.className === "snake")
-    // classList.add to row above (id)
-    // classList.remove to row below (where snake was previously at)
-
-
-
-
-// // When ArrowDown is pressed, move snake down
-//   if (evt.key === 'ArrowDown') {
-//     setTimeout(() => console.log("move down"), speed)
-//   }
-// // When ArrowLeft is pressed, move snake left
-//   if (evt.key === 'ArrowLeft') {
-//     setTimeout(() => console.log("move left"), speed)
-//   }
-// // When ArrowRight is pressed, move snake right
-//   if (evt.key === 'ArrowRight') {
-//     setTimeout(() => console.log("move right"), speed)
-//   }
-// }
 
 // Light and dark mode functionality
 function toggleLightDark() {
