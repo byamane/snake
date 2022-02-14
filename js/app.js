@@ -207,7 +207,6 @@ function arrowMovement(evt){
       render()
     }
       else{
-        console.log(snakeIndex - numberOfColumns + 1)
         lose()
     }
   }
@@ -226,7 +225,6 @@ function arrowMovement(evt){
       render()
     }
     else{
-      console.log(snakeIndex - numberOfColumns + 1)
       lose()
     }
   }
@@ -245,7 +243,24 @@ function arrowMovement(evt){
       render()
     }
     else{
-      console.log(snakeIndex - numberOfColumns + 1)
+      lose()
+    }
+  }
+  // When ArrowRight is pressed, move snake right
+  if (evt.key === 'ArrowRight') {
+    // comparing positional change to occur vs. spaces available
+    if (snakeIndex + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeIndex)){
+      // adjust board array to reflect value change in previous and current snake square
+      board[snakeIndex] = null
+      board[snakeIndex + 1] = "snake"
+      // set variable snakeDirection to later determine where new snake pickups should be attached to
+      snakeDirection = "right"
+      // snakeIndex is adjusted to the new position after change
+      snakeIndex += 1
+      console.log(snakeIndex)
+      render()
+    }
+    else{
       lose()
     }
   }
