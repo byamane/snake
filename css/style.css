@@ -33,9 +33,9 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  /* grid-template-columns: auto 400px auto;
+  grid-template-rows: auto 400px auto; */
   justify-content: center;
   /* font-family: var(--serif) */
 
@@ -60,13 +60,21 @@ body.dark {
   background-color: var(--body-bg);
 }
 
-header {
+main {
+  width: 700px;
+  height: 700px;
+}
+
+
+/* header {
   background-color: var(--header-bg);
-  /* font-family: var(--serif); */
+  font-family: var(--serif);
   font-weight: 700;
   margin: 1.2rem 0;
   padding: 1.2rem;
   display: grid;
+  grid-column: 2;
+  grid-row: 1;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
@@ -82,9 +90,9 @@ header > h1 {
   background-color: rgb(210, 171, 255);
   border: 1.5px solid purple;
   border-radius: 7px;
-}
+} */
 
-h2 {
+/* h2 {
   display: inline-block;
 }
 
@@ -102,24 +110,30 @@ h2 {
   margin-right: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
-}
+} */
 
 .board {
-  display: grid;
-  grid-template-rows: repeat(10, 1fr);
-  grid-template-columns: repeat(12, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  /* grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(12, 1fr); */
   grid-gap: 0vmin;
+  grid-column: 2;
+  grid-row: 2;
   background-color: rgb(116, 116, 116);
   margin-top: 2vh;
-  border: 2px solid black;
-  border-radius: 7px;
-  height: 50vh;
-  width: 50vh;
+  /* border: 2px solid black; */
+  /* border-radius: 7px; */
+  width: 600px;
+  height: 600px;
+
 }
 
 .cell {
   border:1px solid #1d1e2b;
   opacity: 20%;
+  height: 24px;
+  width: 24px;
 }
 
 .pickup {
@@ -136,7 +150,7 @@ h2 {
   /* border-radius: 200px 150px 150px 200px; */
 }
 
-#light-dark-button {
+/* #light-dark-button {
   background-color: var(--light-dark-btn-bg);
   background-image: var(--light-dark-btn-bg);
 }
@@ -159,4 +173,4 @@ h2 {
   justify-content: center;
   align-items: center;
   height: 5vh;
-}
+} */

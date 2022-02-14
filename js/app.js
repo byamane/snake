@@ -6,19 +6,15 @@ const numberOfRows = 10
 
 const numberOfColumns = 12
 
-const leftCell = [0, 12, 24, 36, 48, 60, 72, 84, 96, 108]
-
-const rightCell = [11, 23, 35, 47, 59, 71, 83, 95, 107, 119]
-
 /*-------------------------------- Variables --------------------------------*/
 
 let win, lose, playGame, stopGame, currentScore, highScore, snakeColor, pickupColor, snakeDirection, snakeIndex, pickupIndex, cell
 
-let snakeBody = []
+let snakeBody = [1, 2, 3, 4]
 
 let board = [] // (will be full of null squares with one square holding the value the pickup will be assigned to)
 
-let cellCount = 1000
+let cellCount = 625
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -110,6 +106,7 @@ function gameBoard(){
   }
 }
 console.log(board)
+
 
 
 init()
