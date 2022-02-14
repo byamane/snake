@@ -6,6 +6,10 @@ const numberOfRows = 10
 
 const numberOfColumns = 12
 
+const leftCell = [0, 12, 24, 36, 48, 60, 72, 84, 96, 108]
+
+const rightCell = [11, 23, 35, 47, 59, 71, 83, 95, 107, 119]
+
 /*-------------------------------- Variables --------------------------------*/
 
 let win, loss, currentScore, highScore, snakeColor, pickupColor, snakeDirection, snakeIndex, pickupIndex
@@ -152,8 +156,6 @@ function init(){
 // }
 
 function render(){
-  const leftCell = [0, 12, 24, 36, 48, 60, 72, 84, 96, 108]
-  const rightCell = [11, 23, 35, 47, 59, 71, 83, 95, 107, 119]
   board.forEach((cell, idx) => {
     allCells[idx].className = "cell"
     if (leftCell.includes(idx)) {
@@ -212,7 +214,7 @@ function arrowMovement(evt){
   // When ArrowDown is pressed, move snake down
   if (evt.key === 'ArrowDown') {
     // comparing positional change to occur vs. spaces available
-    if (snakeIndex + numberOfColumns <= numberOfRows * numberOfColumns){
+    if (snakeIndex + numberOfColumns <= (numberOfRows * numberOfColumns) - 1){
       // adjust board array to reflect value change in previous and current snake square
       board[snakeIndex] = null
       board[snakeIndex + numberOfColumns] = "snake"
@@ -231,7 +233,7 @@ function arrowMovement(evt){
   // When ArrowLeft is pressed, move snake left
   if (evt.key === 'ArrowLeft') {
     // comparing positional change to occur vs. spaces available
-    if (snakeIndex - 1 >= 1 && leftCell.includes(snakeIndex) === false){
+    if (snakeIndex - 1 >= 0 && !leftCell.includes(snakeIndex)){
       // adjust board array to reflect value change in previous and current snake square
       board[snakeIndex] = null
       board[snakeIndex - 1] = "snake"
