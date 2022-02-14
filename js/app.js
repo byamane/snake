@@ -1,14 +1,9 @@
 /*-------------------------------- Constants --------------------------------*/
 
 const speed = 150;
-
-const numberOfRows = 10
-
-const numberOfColumns = 12
-
 /*-------------------------------- Variables --------------------------------*/
 
-let win, lose, playGame, stopGame, currentScore, highScore, snakeColor, pickupColor, snakeDirection, snakeIndex, pickupIndex, cell
+let win, lose, playGame, stopGame, currentScore, highScore, snakeColor, pickupColor, snakeDirection, newPickup, cell
 
 let snake = []
 
@@ -100,12 +95,18 @@ lightDarkBtn.addEventListener("click", toggleLightDark)
 init()
 
 function init(){
-  snakeColor = "green"
-  
+  currentScore = 0
+  highScore = null
+  playGame = true
+  stopGame = false
   snake = [105, 106, 107]
-  
+  pickup = 393
+  snakeColor = "green"
+  pickupColor = "red"
+
   gameBoard()
-  snakeBody()
+  getSnake()
+  getPickup()
 
   }
 
@@ -134,14 +135,37 @@ function gameBoard(){
 console.log(board)
 
 // Creating each snake cell via the DOM
-
-function snakeBody(){
+function getSnake(){
   snake.forEach((el) => {
-    board[el].style.backgroundColor = snakeColor
-    board[el].style.opacity = 100
+    const snakeStyle = board[el].style
+      snakeStyle.backgroundColor = snakeColor
+      snakeStyle.opacity = 100
+      snakeStyle.borderRadius = "7px"
+      snakeStyle.border = "1px solid lightgreen"
   })
 }
 console.log(snake)
+
+// Creating pickup via the DOM
+function getPickup(){
+  const pickupStyle = board[pickup].style
+    pickupStyle.opacity = 100
+    pickupStyle.backgroundColor = pickupColor
+    pickupStyle.borderRadius = "20px"
+    pickupStyle.border = "1px solid pink"
+}
+
+
+
+
+
+
+// function newPickup(){
+//   newPickup = Math.floor(Math.random() * cellCount)
+//   if (snake.some(index => index === pickup)){
+//     newPickup()
+//   }
+// }
 
 
 // Light and dark mode functionality
@@ -161,27 +185,94 @@ function checkDarkPref() {
 
 checkDarkPref()
 
+// // Arrow key event listeners for snake movement
+// function arrowMovement(evt){  
+//   // When ArrowUp is pressed, move snake up
+//   if (evt.key === 'ArrowUp' && snakeDirection !== "down") {
+//     // comparing positional change to occur vs. spaces available
+//     if (snakeIndex - numberOfColumns >= 0){
+//       // adjust board array to reflect value change in previous and current snake square
+//       board[snakeIndex] = null
+//       board[snakeIndex - numberOfColumns] = "snake"
+//       // set variable snakeDirection to later determine where new snake pickups should be attached to
+//       snakeDirection = "up"
+//       // snakeIndex is adjusted to the new position after change
+//       snakeIndex -= numberOfColumns
+//       console.log(snakeIndex)
+//       render()
+//     }
+//       else{
+//         lose()
+//     }
+//   }
+//   // When ArrowDown is pressed, move snake down
+//   if (evt.key === 'ArrowDown' && snakeDirection !== "up") {
+//     // comparing positional change to occur vs. spaces available
+//     if (snakeIndex + numberOfColumns <= (numberOfRows * numberOfColumns) - 1){
+//       // adjust board array to reflect value change in previous and current snake square
+//       board[snakeIndex] = null
+//       board[snakeIndex + numberOfColumns] = "snake"
+//       // set variable snakeDirection to later determine where new snake pickups should be attached to
+//       snakeDirection = "down"
+//       // snakeIndex is adjusted to the new position after change
+//       snakeIndex += numberOfColumns
+//       snakeBody.pop()
+//       snakeBody.unshift(snakeIndex += numberOfColumns)
+
+//       console.log(snakeIndex)
+//       console.log(snakeBody.pop())
+//       console.log(snakeBody.unshift(snakeIndex += numberOfColumns))
+
+//       render()
+//     }
+//     else{
+//       lose()
+//     }
+//   }
+//   // When ArrowLeft is pressed, move snake left
+//   if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
+//     // comparing positional change to occur vs. spaces available
+//     if (snakeIndex - 1 >= 0 && !leftCell.includes(snakeIndex)){
+//       // adjust board array to reflect value change in previous and current snake square
+//       board[snakeIndex] = null
+//       board[snakeIndex - 1] = "snake"
+//       // set variable snakeDirection to later determine where new snake pickups should be attached to
+//       snakeDirection = "left"
+//       // snakeIndex is adjusted to the new position after change
+//       snakeIndex -= 1
+//       // remove previous snakeHead value and replace with new one
+//       snakeHead.pop()
+//       snakeHead.unshift(snakeIndex - 1)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//       console.log(snakeIndex)
+//       console.log(snakeBody.pop())
+//       console.log(snakeBody.unshift(snakeIndex += numberOfColumns))
+//       render()
+//     }
+//     else{
+//       lose()
+//     }
+//   }
+//   // When ArrowRight is pressed, move snake right
+//   if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
+//     // comparing positional change to occur vs. spaces available
+//     if (snakeIndex + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeIndex)){
+//       // adjust board array to reflect value change in previous and current snake square
+//       board[snakeIndex] = null
+//       board[snakeIndex + 1] = "snake"
+//       // set variable snakeDirection to later determine where new snake pickups should be attached to
+//       snakeDirection = "right"
+//       // snakeIndex is adjusted to the new position after change
+//       snakeIndex += 1
+//       console.log(snakeIndex)
+//       render()
+//     }
+//     else{
+//       lose()
+//     }
+//   }
+// }
 
 
 // /*-------------------------------- Constants --------------------------------*/
@@ -308,8 +399,6 @@ checkDarkPref()
 //   console.log(pickupIndex)
 
 //   currentScore = 0;
-//   highScore = null;
-//   stopGame = false
 
 //   play()
 //   render()
@@ -331,7 +420,7 @@ checkDarkPref()
 //       // Snake pickups should appear in random spots on the board
 //       board[pickupIndex] = null
 //       allCells[idx].classList.remove("pickup")
-//       let newPickup = Math.floor(Math.random() * (numberOfColumns * numberOfRows))
+      
 //       board[newPickup] = "pickup"
 //       // add 1 to current score
 //       currentScore += 1
@@ -377,92 +466,5 @@ checkDarkPref()
 
 // }
 
-// // Arrow key event listeners for snake movement
-// function arrowMovement(evt){  
-//   // When ArrowUp is pressed, move snake up
-//   if (evt.key === 'ArrowUp' && snakeDirection !== "down") {
-//     // comparing positional change to occur vs. spaces available
-//     if (snakeIndex - numberOfColumns >= 0){
-//       // adjust board array to reflect value change in previous and current snake square
-//       board[snakeIndex] = null
-//       board[snakeIndex - numberOfColumns] = "snake"
-//       // set variable snakeDirection to later determine where new snake pickups should be attached to
-//       snakeDirection = "up"
-//       // snakeIndex is adjusted to the new position after change
-//       snakeIndex -= numberOfColumns
-//       console.log(snakeIndex)
-//       render()
-//     }
-//       else{
-//         lose()
-//     }
-//   }
-//   // When ArrowDown is pressed, move snake down
-//   if (evt.key === 'ArrowDown' && snakeDirection !== "up") {
-//     // comparing positional change to occur vs. spaces available
-//     if (snakeIndex + numberOfColumns <= (numberOfRows * numberOfColumns) - 1){
-//       // adjust board array to reflect value change in previous and current snake square
-//       board[snakeIndex] = null
-//       board[snakeIndex + numberOfColumns] = "snake"
-//       // set variable snakeDirection to later determine where new snake pickups should be attached to
-//       snakeDirection = "down"
-//       // snakeIndex is adjusted to the new position after change
-//       snakeIndex += numberOfColumns
-//       snakeBody.pop()
-//       snakeBody.unshift(snakeIndex += numberOfColumns)
 
-//       console.log(snakeIndex)
-//       console.log(snakeBody.pop())
-//       console.log(snakeBody.unshift(snakeIndex += numberOfColumns))
-
-//       render()
-//     }
-//     else{
-//       lose()
-//     }
-//   }
-//   // When ArrowLeft is pressed, move snake left
-//   if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
-//     // comparing positional change to occur vs. spaces available
-//     if (snakeIndex - 1 >= 0 && !leftCell.includes(snakeIndex)){
-//       // adjust board array to reflect value change in previous and current snake square
-//       board[snakeIndex] = null
-//       board[snakeIndex - 1] = "snake"
-//       // set variable snakeDirection to later determine where new snake pickups should be attached to
-//       snakeDirection = "left"
-//       // snakeIndex is adjusted to the new position after change
-//       snakeIndex -= 1
-//       // remove previous snakeHead value and replace with new one
-//       snakeHead.pop()
-//       snakeHead.unshift(snakeIndex - 1)
-
-
-//       console.log(snakeIndex)
-//       console.log(snakeBody.pop())
-//       console.log(snakeBody.unshift(snakeIndex += numberOfColumns))
-//       render()
-//     }
-//     else{
-//       lose()
-//     }
-//   }
-//   // When ArrowRight is pressed, move snake right
-//   if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
-//     // comparing positional change to occur vs. spaces available
-//     if (snakeIndex + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeIndex)){
-//       // adjust board array to reflect value change in previous and current snake square
-//       board[snakeIndex] = null
-//       board[snakeIndex + 1] = "snake"
-//       // set variable snakeDirection to later determine where new snake pickups should be attached to
-//       snakeDirection = "right"
-//       // snakeIndex is adjusted to the new position after change
-//       snakeIndex += 1
-//       console.log(snakeIndex)
-//       render()
-//     }
-//     else{
-//       lose()
-//     }
-//   }
-// }
 
