@@ -10,7 +10,7 @@ const numberOfColumns = 12
 
 let win, lose, playGame, stopGame, currentScore, highScore, snakeColor, pickupColor, snakeDirection, snakeIndex, pickupIndex, cell
 
-let snakeBody = [1, 2, 3, 4]
+let snake = []
 
 let board = [] // (will be full of null squares with one square holding the value the pickup will be assigned to)
 
@@ -19,10 +19,6 @@ let cellCount = 625
 /*------------------------ Cached Element References ------------------------*/
 
 const gameArea = document.querySelector(".board")
-
-const snake = document.querySelector(".snake")
-
-const pickup = document.querySelector(".pickup")
 
 // const gameStatus = document.querySelector(".message")
 
@@ -96,24 +92,20 @@ lightDarkBtn.addEventListener("click", toggleLightDark)
 
 // Set a variable snakeIndex so that each arrow listener will just reference that variable, and not need to loop through the board each time before
 
-function gameBoard(){
-  for (let i = 0; i < cellCount; i++){
-    let cell = document.createElement("div")
-    cell.setAttribute("class", "cell")
-    cell.setAttribute("id", `${i}`)
-    gameArea.appendChild(cell)
-    board.push(document.getElementById(i))
-  }
-}
-console.log(board)
+
+
 
 
 
 init()
 
 function init(){
-  gameBoard()
+  snakeColor = "green"
   
+  snake = [105, 106, 107]
+  
+  gameBoard()
+  snakeBody()
 
   }
 
@@ -121,7 +113,38 @@ function init(){
 
 
 
-  // Light and dark mode functionality
+
+
+
+
+
+
+// Creating a gameBoard via the DOM based off variable cellCount
+function gameBoard(){
+  for (let i = 0; i < cellCount; i++){
+    let cell = document.createElement("div")
+    cell.setAttribute("class", "cell")
+    cell.setAttribute("id", `${i}`)
+    // creating visual board via the DOM
+    gameArea.appendChild(cell)
+    // create the board game state variable by pushing each id through to board array
+    board.push(document.getElementById(i))
+  }
+}
+console.log(board)
+
+// Creating each snake cell via the DOM
+
+function snakeBody(){
+  snake.forEach((el) => {
+    board[el].style.backgroundColor = snakeColor
+    board[el].style.opacity = 100
+  })
+}
+console.log(snake)
+
+
+// Light and dark mode functionality
 function toggleLightDark() {
   body.className = body.className === "dark" ? "" : "dark"
 }
