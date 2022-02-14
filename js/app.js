@@ -117,7 +117,7 @@ function init(){
 
 
   // play()
-  // render()
+  render()
   }
 
 // function play(){
@@ -152,13 +152,31 @@ function init(){
 // }
 
 function render(){
+  const leftCell = [0, 12, 24, 36, 48, 60, 72, 84, 96, 108]
+  const rightCell = [11, 23, 35, 47, 59, 71, 83, 95, 107, 119]
+  board.forEach((cell, idx) => {
+    allCells[idx].className = "cell"
+    if (leftCell.includes(idx)) {
+      allCells[idx].classList.add("leftCell")
+    }
+    if (rightCell.includes(idx)) {
+      allCells[idx].classList.add("rightCell")
+    }
+    if (cell === "snake") {
+      allCells[idx].classList.add("snake")
+    }
+    if (cell === "pickup") {
+      allCells[idx].classList.add("pickup")
+    }
+  })
+  
 
 
 
 
 highScore = localStorage.getItem("high-score")
 // Set high score
-if(highscore !== null){
+if(highScore !== null){
   if (currentScore > highScore) {
       localStorage.setItem("high-score", highScore);      
   }
@@ -172,16 +190,10 @@ if(highscore !== null){
 
 // Arrow key event listeners for snake movement
 function arrowMovement(evt){  
-  let removeSnakeClass = function(snakeIndex){
-    allCells[snakeIndex].classList.remove("snake")
-  }
-    // When ArrowUp is pressed, move snake up
-    if (evt.key === 'ArrowUp') {
-      // comparing positional change to occur vs. spaces available
-      if (snakeIndex - numberOfColumns + 1 >= 0){
-      removeSnakeClass(snakeIndex)
-      // assign new cell snake is in with the class of "cell snake"
-      allCells[snakeIndex].classList.add("snake")
+  // When ArrowUp is pressed, move snake up
+  if (evt.key === 'ArrowUp') {
+    // comparing positional change to occur vs. spaces available
+    if (snakeIndex - numberOfColumns >= 0){
       // adjust board array to reflect value change in previous and current snake square
       board[snakeIndex] = null
       board[snakeIndex - numberOfColumns] = "snake"
@@ -189,9 +201,47 @@ function arrowMovement(evt){
       snakeDirection = "up"
       // snakeIndex is adjusted to the new position after change
       snakeIndex -= numberOfColumns
-      
-      return
-      }
+      console.log(snakeIndex)
+      render()
+    }
+      else{
+        console.log(snakeIndex - numberOfColumns + 1)
+        lose()
+    }
+  }
+  // When ArrowDown is pressed, move snake down
+  if (evt.key === 'ArrowDown') {
+    // comparing positional change to occur vs. spaces available
+    if (snakeIndex + numberOfColumns <= numberOfRows * numberOfColumns){
+      // adjust board array to reflect value change in previous and current snake square
+      board[snakeIndex] = null
+      board[snakeIndex + numberOfColumns] = "snake"
+      // set variable snakeDirection to later determine where new snake pickups should be attached to
+      snakeDirection = "down"
+      // snakeIndex is adjusted to the new position after change
+      snakeIndex += numberOfColumns
+      console.log(snakeIndex)
+      render()
+    }
+    else{
+      console.log(snakeIndex - numberOfColumns + 1)
+      lose()
+    }
+  }
+  // When ArrowLeft is pressed, move snake left
+  if (evt.key === 'ArrowLeft') {
+    // comparing positional change to occur vs. spaces available
+    if (snakeIndex - 1 >= 1 && leftCell.includes(snakeIndex) === false){
+      // adjust board array to reflect value change in previous and current snake square
+      board[snakeIndex] = null
+      board[snakeIndex - 1] = "snake"
+      // set variable snakeDirection to later determine where new snake pickups should be attached to
+      snakeDirection = "left"
+      // snakeIndex is adjusted to the new position after change
+      snakeIndex -= 1
+      console.log(snakeIndex)
+      render()
+    }
     else{
       console.log(snakeIndex - numberOfColumns + 1)
       lose()
@@ -267,32 +317,32 @@ function arrowMovement(evt){
 //       }
 //     }
   
-//   // When ArrowLeft is pressed, move snake left
-//   if (evt.key === 'ArrowLeft') {
-//     // iterate across the board array to find snake element
-//     for (let idx = 0; idx < board.length; idx++) {
-//       const el = board[idx]
-//         if (el === "snake"){
-//           // comparing positional change to occur vs. spaces available
-//           if (((parseInt(allCells[idx].id)) - 1) >= 1 && allCells[idx].className !== "cell endLeft snake"){
-//             // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
-//             removeSnakeClass(idx)
-//             // assign new cell snake is in with the class of "cell snake"
-//             allCells[idx - 1].classList.add("snake")
-//             // adjust board array to reflect value change in previous and current snake square
-//             board[idx] = null 
-//             board[idx - 1] = "snake"
-//             // set variable snakeDirection to later determine where new snake pickups should be attached to
-//             snakeDirection = "left"
-//             console.log(snakeIndex)
-//             snakeIndex
-//             return snakeIndex  
-//         } else {
-//               lose()
-//           }
-//         }
-//       }
-//     }
+  // // When ArrowLeft is pressed, move snake left
+  // if (evt.key === 'ArrowLeft') {
+  //   // iterate across the board array to find snake element
+  //   for (let idx = 0; idx < board.length; idx++) {
+  //     const el = board[idx]
+  //       if (el === "snake"){
+  //         // comparing positional change to occur vs. spaces available
+  //         if (((parseInt(allCells[idx].id)) - 1) >= 1 && allCells[idx].className !== "cell endLeft snake"){
+  //           // reset class name of cell snake was previously at to "cell" to maintain empty cell styling
+  //           removeSnakeClass(idx)
+  //           // assign new cell snake is in with the class of "cell snake"
+  //           allCells[idx - 1].classList.add("snake")
+  //           // adjust board array to reflect value change in previous and current snake square
+  //           board[idx] = null 
+  //           board[idx - 1] = "snake"
+  //           // set variable snakeDirection to later determine where new snake pickups should be attached to
+  //           snakeDirection = "left"
+  //           console.log(snakeIndex)
+  //           snakeIndex
+  //           return snakeIndex  
+  //       } else {
+  //             lose()
+  //         }
+  //       }
+  //     }
+  //   }
   
 //   // When ArrowRight is pressed, move snake right
 //   if (evt.key === 'ArrowRight') {
