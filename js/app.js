@@ -8,9 +8,9 @@ const numberOfColumns = 25
 
 const numberOfRows = 25
 
-const leftCell = [0, 12, 24, 36, 48, 60, 72, 84, 96, 108]
+const leftCell = [0, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 575, 600]
 
-const rightCell = [11, 23, 35, 47, 59, 71, 83, 95, 107, 119]
+const rightCell = [24, 49, 74, 99, 124, 149, 174, 199, 224, 249, 274, 299, 324, 349, 374, 399, 424, 449, 474, 499, 524, 549, 574, 599, 624]
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -198,8 +198,6 @@ function arrowMovement(evt){
       getPickup()
     }
       else{
-        console.log(snakeTop)
-        console.log(snakeTop - numberOfColumns)
         lose()
     }
   }
@@ -215,24 +213,27 @@ function arrowMovement(evt){
       clearCells()
       getSnake()
       getPickup()
-      }
+    }
       else {
         lose()
       }
   }
-//   // When ArrowLeft is pressed, move snake left
-//   if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
-//     // comparing positional change to occur vs. spaces available
-//     if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop)){
-//       // set variable snakeDirection to later determine where new snake pickups should be attached to
-//       snakeDirection = "left"
-//       change = -1
-//       getNewTop()
-//     }
-//     else{
-//       lose()
-//     }
-//   }
+  // When ArrowLeft is pressed, move snake left
+  if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
+    // comparing positional change to occur vs. spaces available
+    if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop)){
+      // set variable snakeDirection to later determine where new snake pickups should be attached to
+      snakeDirection = "left"
+      change = -1
+      newSnakeTop()
+      clearCells()
+      getSnake()
+      getPickup()
+    }
+      else{
+        lose()
+      }
+  }
 //   // When ArrowRight is pressed, move snake right
 //   if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
 //     // comparing positional change to occur vs. spaces available
