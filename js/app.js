@@ -98,6 +98,8 @@ document.addEventListener('keydown', arrowMovement)
 
 // Set a variable snakeIndex so that each arrow listener will just reference that variable, and not need to loop through the board each time before
 
+
+gameBoard()
 init()
 
 function init(){
@@ -111,7 +113,6 @@ function init(){
   pickupColor = "purple"
   snakeTop = snake[0]
   
-  gameBoard()
   clearCells()
   getSnake()
   getPickup()
