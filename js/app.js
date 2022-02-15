@@ -234,19 +234,22 @@ function arrowMovement(evt){
         lose()
       }
   }
-//   // When ArrowRight is pressed, move snake right
-//   if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
-//     // comparing positional change to occur vs. spaces available
-//     if (snakeTop + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeTop)){
-//       // set variable snakeDirection to later determine where new snake pickups should be attached to
-//       snakeDirection = "right"
-//       change = 1
-//       getNewTop()
-//     }
-//     else{
-//       lose()
-//     }
-//   }
+  // When ArrowRight is pressed, move snake right
+  if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
+    // comparing positional change to occur vs. spaces available
+    if (snakeTop + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeTop)){
+      // set variable snakeDirection to later determine where new snake pickups should be attached to
+      snakeDirection = "right"
+      change = 1
+      newSnakeTop()
+      clearCells()
+      getSnake()
+      getPickup()
+    }
+    else{
+      lose()
+    }
+  }
 }
 
 function lose(){
