@@ -24,7 +24,7 @@ let board = [] // (will be full of null squares with one square holding the valu
 
 const gameArea = document.querySelector(".board")
 
-// const gameStatus = document.querySelector(".message")
+const gameStatus = document.querySelector(".message")
 
 const restartBtn = document.getElementById("restart")
 
@@ -103,19 +103,26 @@ function init(){
   highScore = null
   playGame = true
   stopGame = false
-  snake = [105, 106, 107]
+  snake = [107, 106, 105]
   pickup = 393
   snakeColor = "green"
   pickupColor = "purple"
   snakeTop = snake[0]
 
+  console.log(snakeTop)
+
+
   gameBoard()
   getSnake()
   getPickup()
+  render()
 
   }
 
+function render(){
+  getSnake()
 
+}
 
 
 
@@ -144,32 +151,37 @@ function getSnake(){
   snake.forEach((el) => {
     const snakeStyle = board[el].style
       snakeStyle.backgroundColor = snakeColor
-      snakeStyle.opacity = 100
+      snakeStyle.opacity = "1"
       snakeStyle.borderRadius = "7px"
       snakeStyle.border = "1px solid lightgreen"
+  })
+}
+
+function clearCells(){
+  board.forEach((el) => {
+    el.style.backgroundColor = "rgb(116, 116, 116)"
+    el.style.opacity = "0.2"
+    el.style.borderRadius = "0"
+    el.style.border = "1px solid #1d1e2b"
   })
 }
 
 // Creating pickup via the DOM
 function getPickup(){
   const pickupStyle = board[pickup].style
-    pickupStyle.opacity = 100
+    pickupStyle.opacity = "1"
     pickupStyle.backgroundColor = pickupColor
     pickupStyle.borderRadius = "20px"
     pickupStyle.border = "1px solid pink"
 }
 
-
-
-
-
-
-// function newPickup(){
-//   newPickup = Math.floor(Math.random() * cellCount)
-//   if (snake.some(index => index === pickup)){
-//     newPickup()
-//   }
-// }
+// Creating new snake top after position changes
+function newSnakeTop(){
+  newTop = snakeTop + change
+  snake.unshift(newTop)
+  snake.pop()
+  snakeTop = snake[0]
+}
 
 // Arrow key event listeners for snake movement
 function arrowMovement(evt){  
@@ -180,52 +192,73 @@ function arrowMovement(evt){
       // set variable snakeDirection to later determine where new snake pickups should be attached to
       snakeDirection = "up"
       change = -(numberOfColumns)
+      newSnakeTop()
+      clearCells()
+      getSnake()
+      getPickup()
     }
       else{
+        console.log(snakeTop)
+        console.log(snakeTop - numberOfColumns)
         lose()
-    }
-  }
-  // When ArrowDown is pressed, move snake down
-  if (evt.key === 'ArrowDown' && snakeDirection !== "up") {
-    // comparing positional change to occur vs. spaces available
-    if (snakeTop + numberOfColumns <= (numberOfRows * numberOfColumns) - 1){
-      // set variable snakeDirection to later determine where new snake pickups should be attached to
-      snakeDirection = "down"
-      change = numberOfColumns
-    }
-    else{
-      lose()
-    }
-  }
-  // When ArrowLeft is pressed, move snake left
-  if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
-    // comparing positional change to occur vs. spaces available
-    if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop)){
-      // set variable snakeDirection to later determine where new snake pickups should be attached to
-      snakeDirection = "left"
-      change = -1
-    }
-    else{
-      lose()
-    }
-  }
-  // When ArrowRight is pressed, move snake right
-  if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
-    // comparing positional change to occur vs. spaces available
-    if (snakeTop + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeTop)){
-      // set variable snakeDirection to later determine where new snake pickups should be attached to
-      snakeDirection = "right"
-      change = 1
-    }
-    else{
-      lose()
     }
   }
 }
 
-lose = function(){
+//   // When ArrowDown is pressed, move snake down
+//   if (evt.key === 'ArrowDown' && snakeDirection !== "up") {
+//     // comparing positional change to occur vs. spaces available
+//     if (snakeTop + numberOfColumns <= (numberOfRows * numberOfColumns) - 1){
+//       // set variable snakeDirection to later determine where new snake pickups should be attached to
+//       snakeDirection = "down"
+//       change = numberOfColumns
+//       getNewTop()
+//     }
+//     else{
+//       lose()
+//     }
+//   }
+//   // When ArrowLeft is pressed, move snake left
+//   if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
+//     // comparing positional change to occur vs. spaces available
+//     if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop)){
+//       // set variable snakeDirection to later determine where new snake pickups should be attached to
+//       snakeDirection = "left"
+//       change = -1
+//       getNewTop()
+//     }
+//     else{
+//       lose()
+//     }
+//   }
+//   // When ArrowRight is pressed, move snake right
+//   if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
+//     // comparing positional change to occur vs. spaces available
+//     if (snakeTop + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeTop)){
+//       // set variable snakeDirection to later determine where new snake pickups should be attached to
+//       snakeDirection = "right"
+//       change = 1
+//       getNewTop()
+//     }
+//     else{
+//       lose()
+//     }
+//   }
+// }
+
+function lose(){
+  // clearTimeout
   alert("Game over")
 }
+
+// function newPickup(){
+//   newPickup = Math.floor(Math.random() * cellCount)
+//   if (snake.some(index => index === pickup)){
+//     newPickup()
+//   }
+// }
+
+
 
 // Light and dark mode functionality
 function toggleLightDark() {
