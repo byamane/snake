@@ -225,6 +225,7 @@ function arrowMovement(evt){
       // set variable snakeDirection to later determine where new snake pickups should be attached to
       snakeDirection = "down"
       change = numberOfColumns
+
       newSnakeTop()
       clearCells()
       getSnake()
@@ -238,10 +239,11 @@ function arrowMovement(evt){
   // When ArrowLeft is pressed, move snake left
   if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
     // comparing positional change to occur vs. spaces available
-    if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop)){
+    if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop) && !snake.some((el => el === snakeTop - 1))){
       // set variable snakeDirection to later determine where new snake pickups should be attached to
       snakeDirection = "left"
       change = -1
+
       newSnakeTop()
       clearCells()
       getSnake()
@@ -259,6 +261,7 @@ function arrowMovement(evt){
       // set variable snakeDirection to later determine where new snake pickups should be attached to
       snakeDirection = "right"
       change = 1
+      
       newSnakeTop()
       clearCells()
       getSnake()
