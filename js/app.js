@@ -98,7 +98,6 @@ document.addEventListener('keydown', arrowMovement)
 
 // Set a variable snakeIndex so that each arrow listener will just reference that variable, and not need to loop through the board each time before
 
-
 gameBoard()
 init()
 
@@ -222,7 +221,7 @@ function arrowMovement(evt){
   // When ArrowDown is pressed, move snake down
   if (evt.key === 'ArrowDown' && snakeDirection !== "up") {
     // comparing positional change to occur vs. spaces available
-    if (snakeTop + numberOfColumns <= (numberOfRows * numberOfColumns) - 1) {
+    if (snakeTop + numberOfColumns <= (numberOfRows * numberOfColumns) - 1 && !snake.some((el => el === snakeTop + numberOfColumns))) {
       // set variable snakeDirection to later determine where new snake pickups should be attached to
       snakeDirection = "down"
       change = numberOfColumns
