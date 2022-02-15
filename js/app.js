@@ -14,7 +14,7 @@ const rightCell = [24, 49, 74, 99, 124, 149, 174, 199, 224, 249, 274, 299, 324, 
 
 /*-------------------------------- Variables --------------------------------*/
 
-let playGame, stopGame, currentScore, highScore, cell, snakeColor, pickupColor, snakeTop, snakeDirection, change, newPickup
+let playGame, stopGame, score, highScore, cell, snakeColor, pickupColor, snakeTop, snakeDirection, change
 
 let snake = []
 
@@ -23,6 +23,8 @@ let board = [] // (will be full of null squares with one square holding the valu
 /*------------------------ Cached Element References ------------------------*/
 
 const gameArea = document.querySelector(".board")
+
+const currentScore = document.querySelector("#current")
 
 const gameStatus = document.querySelector(".message")
 
@@ -99,7 +101,7 @@ document.addEventListener('keydown', arrowMovement)
 init()
 
 function init(){
-  currentScore = 0
+  score = 0
   highScore = null
   playGame = true
   stopGame = false
@@ -108,29 +110,25 @@ function init(){
   snakeColor = "green"
   pickupColor = "purple"
   snakeTop = snake[0]
-
-  console.log(snakeTop)
-
-
+  
   gameBoard()
+  clearCells()
   getSnake()
   getPickup()
   render()
-
   }
 
 function render(){
   getSnake()
+  if (pickup === snakeTop){
+    snake.push(snake[snake.length - 1])
+    score += 1
+    currentScore.textContent = `Current Score: ${score}`
+    newPickup()
+    getPickup()
+  }
 
 }
-
-
-
-
-
-
-
-
 
 // Creating a gameBoard via the DOM based off variable cellCount
 function gameBoard(){
@@ -183,6 +181,13 @@ function newSnakeTop(){
   snakeTop = snake[0]
 }
 
+function newPickup(){
+  pickup = Math.floor(Math.random() * cellCount)
+  if (snake.some(index => index === pickup)){
+    newPickup()
+  }
+}
+
 // Arrow key event listeners for snake movement
 function arrowMovement(evt){  
   // When ArrowUp is pressed, move snake up
@@ -196,6 +201,7 @@ function arrowMovement(evt){
       clearCells()
       getSnake()
       getPickup()
+      render()
     }
       else{
         lose()
@@ -213,6 +219,7 @@ function arrowMovement(evt){
       clearCells()
       getSnake()
       getPickup()
+      render()
     }
       else {
         lose()
@@ -229,6 +236,7 @@ function arrowMovement(evt){
       clearCells()
       getSnake()
       getPickup()
+      render()
     }
       else{
         lose()
@@ -245,6 +253,7 @@ function arrowMovement(evt){
       clearCells()
       getSnake()
       getPickup()
+      render()
     }
     else{
       lose()
@@ -256,15 +265,6 @@ function lose(){
   // clearTimeout
   alert("Game over")
 }
-
-// function newPickup(){
-//   newPickup = Math.floor(Math.random() * cellCount)
-//   if (snake.some(index => index === pickup)){
-//     newPickup()
-//   }
-// }
-
-
 
 // Light and dark mode functionality
 function toggleLightDark() {
