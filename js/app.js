@@ -202,14 +202,11 @@ function arrowMovement(evt){
   // When ArrowUp is pressed, move snake up
   if (evt.key === 'ArrowUp' && snakeDirection !== "down") {
     // comparing positional change to occur vs. spaces available
-    if (snakeTop - numberOfColumns >= 0 && !snake.some((el => el === newTop))) {
+    if (snakeTop - numberOfColumns >= 0 && !snake.some((el => el === snakeTop - numberOfColumns))) {
       // set variable snakeDirection to later determine where new snake pickups should be attached to
       snakeDirection = "up"
       change = -numberOfColumns
-      // console.log(bodyCrash)
-      console.log(newTop)
-      console.log(snakeTop)
-      console.log(snake)
+
       newSnakeTop()
       clearCells()
       getSnake()
@@ -217,10 +214,7 @@ function arrowMovement(evt){
       render()
     }
       else{
-        console.log(newTop)
-        console.log(snake)
         lose()
-        
     }
   }
 
