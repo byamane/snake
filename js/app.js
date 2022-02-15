@@ -14,7 +14,7 @@ const rightCell = [24, 49, 74, 99, 124, 149, 174, 199, 224, 249, 274, 299, 324, 
 
 /*-------------------------------- Variables --------------------------------*/
 
-let playGame, stopGame, score, highScore, cell, snakeColor, pickupColor, snakeTop, snakeDirection, change
+let playGame, stopGame, score, highScore, cell, snakeColor, pickupColor, snakeTop, newTop, snakeDirection, change, bodyCrash
 
 let snake = []
 
@@ -188,15 +188,28 @@ function newPickup(){
   }
 }
 
+// checking for crash against snake body
+  
+if (snake.some((el => el === newTop))){
+    bodyCrash = true
+  } else {
+    bodyCrash = false
+  }
+
+
 // Arrow key event listeners for snake movement
 function arrowMovement(evt){  
   // When ArrowUp is pressed, move snake up
   if (evt.key === 'ArrowUp' && snakeDirection !== "down") {
     // comparing positional change to occur vs. spaces available
-    if (snakeTop - numberOfColumns >= 0){
+    if (snakeTop - numberOfColumns >= 0 && !snake.some((el => el === newTop))) {
       // set variable snakeDirection to later determine where new snake pickups should be attached to
       snakeDirection = "up"
-      change = -(numberOfColumns)
+      change = -numberOfColumns
+      // console.log(bodyCrash)
+      console.log(newTop)
+      console.log(snakeTop)
+      console.log(snake)
       newSnakeTop()
       clearCells()
       getSnake()
@@ -204,7 +217,10 @@ function arrowMovement(evt){
       render()
     }
       else{
+        console.log(newTop)
+        console.log(snake)
         lose()
+        
     }
   }
 
