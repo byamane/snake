@@ -26,6 +26,8 @@ const gameArea = document.querySelector(".board")
 
 const currentScore = document.querySelector("#current")
 
+const highestScore = document.querySelector("#highest")
+
 const gameStatus = document.querySelector(".message")
 
 const restartBtn = document.getElementById("restart")
@@ -103,6 +105,7 @@ init()
 
 function init(){
   score = 0
+  currentScore.textContent = `Current Score: ${score}`
   highScore = null
   playGame = true
   stopGame = false
@@ -305,7 +308,20 @@ function lose(){
   clearInterval(startLeft)
   clearInterval(startRight)
   alert("Game over. Press 'Restart Game' to try again!")
+  highScore = localStorage.getItem("high-score")
+  // Set high score
+  if(highScore !== null){
+    if (score > highScore) {
+        localStorage.setItem("high-score", highScore)
+        highestScore.textContent = `Highest Score: ${highScore}`     
+    }
+  }
+    else{
+      localStorage.setItem("high-score", highScore);
+      highestScore.textContent = `Highest Score: ${highScore}` 
+  }
   playGame = false
+  
 }
 
 // Light and dark mode functionality
@@ -325,18 +341,8 @@ function checkDarkPref() {
 
 checkDarkPref()
 
-//   highScore = localStorage.getItem("high-score")
-//   // Set high score
-//   if(highScore !== null){
-//     if (currentScore > highScore) {
-//         localStorage.setItem("high-score", highScore);      
-//     }
-//   }
-//     else{
-//       localStorage.setItem("high-score", highScore);
-//   }
 
-// }
+
 
 
 
