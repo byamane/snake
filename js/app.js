@@ -105,6 +105,8 @@ document.addEventListener('keydown', restartWithKeyPress)
 
 // Set a variable snakeIndex so that each arrow listener will just reference that variable, and not need to loop through the board each time before
 
+highScore = ""
+localStorage.setItem("high-score", highScore)
 gameBoard()
 init()
 
@@ -320,7 +322,6 @@ function lose(){
 }
 
 function getHighScore(){
-  if(highScore !== null){
     if (score > highScore) {
       highScore = score
       localStorage.setItem("high-score", highScore)
@@ -330,7 +331,6 @@ function getHighScore(){
       highestScore.textContent = `Highest Score: ${highScore}` 
     }
   }
-}
 
 // restart game by pressing "space" key
 function restartWithKeyPress(evt){
