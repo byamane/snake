@@ -42,7 +42,7 @@ const myStorage = window.localStorage
 
 // onclick (for movement on virtual keypad)
 
-// restart (to reset game)
+// restart (to reset game on click)
 restartBtn.addEventListener("click", init)
 
 // light/dark mode
@@ -50,6 +50,9 @@ lightDarkBtn.addEventListener("click", toggleLightDark)
 
 // keydown (for movement via keyboard)
 document.addEventListener('keydown', arrowMovement)
+
+// keydown (for restart via keyboard)
+document.addEventListener('keydown', restartWithKeyPress) 
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -307,7 +310,7 @@ function lose(){
   clearInterval(startDown)
   clearInterval(startLeft)
   clearInterval(startRight)
-  alert("Game over. Press 'Restart Game' to try again!")
+  alert("Game over. Press Space or the 'Restart Game' button to try again!")
   highScore = localStorage.getItem("high-score")
   // Set high score
   if(highScore !== null){
@@ -322,6 +325,18 @@ function lose(){
   }
   playGame = false
   
+}
+
+// restart game by pressing "space" key
+function restartWithKeyPress(evt){
+  if (evt.key === ' '){
+    clearInterval(startUp)
+    clearInterval(startDown)
+    clearInterval(startLeft)
+    clearInterval(startRight)
+    playGame = false
+    init()
+  }
 }
 
 // Light and dark mode functionality
