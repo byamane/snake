@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 
-const speed = 75;
+const speed = 70;
 
 const cellCount = 625
 
@@ -11,6 +11,10 @@ const numberOfRows = 25
 const leftCell = [0, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 325, 350, 375, 400, 425, 450, 475, 500, 525, 550, 575, 600]
 
 const rightCell = [24, 49, 74, 99, 124, 149, 174, 199, 224, 249, 274, 299, 324, 349, 374, 399, 424, 449, 474, 499, 524, 549, 574, 599, 624]
+
+const saveHighScore = "high-score"
+
+const myStorage = window.localStorage
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -34,9 +38,7 @@ const restartBtn = document.getElementById("restart")
 
 const body = document.querySelector("body")
 
-const lightDarkBtn = document.querySelector("#light-dark-button")
-
-const myStorage = window.localStorage 
+const lightDarkBtn = document.querySelector("#light-dark-button") 
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -109,7 +111,8 @@ init()
 function init(){
   score = 0
   currentScore.textContent = `Current Score: ${score}`
-  highScore = null
+  highScore = localStorage.getItem(saveHighScore)
+  highestScore.textContent = `Highest Score: ${highScore}`
   playGame = true
   snake = [107, 106, 105]
   pickup = 393
@@ -130,6 +133,7 @@ function render(){
     snake.push(snake[snake.length - 1])
     score += 1
     currentScore.textContent = `Current Score: ${score}`
+    highestScore.textContent = `Highest Score: ${highScore}`
     newPickup()
     getPickup()
   }
@@ -311,20 +315,21 @@ function lose(){
   clearInterval(startLeft)
   clearInterval(startRight)
   alert("Game over. Press Space or the 'Restart Game' button to try again!")
-  highScore = localStorage.getItem("high-score")
-  // Set high score
+  getHighScore()
+  playGame = false
+}
+
+function getHighScore(){
   if(highScore !== null){
     if (score > highScore) {
-        localStorage.setItem("high-score", highScore)
-        highestScore.textContent = `Highest Score: ${highScore}`     
-    }
-  }
-    else{
+      highScore = score
+      localStorage.setItem("high-score", highScore)
+      highestScore.textContent = `Highest Score: ${highScore}`     
+    } else{
       localStorage.setItem("high-score", highScore);
       highestScore.textContent = `Highest Score: ${highScore}` 
+    }
   }
-  playGame = false
-  
 }
 
 // restart game by pressing "space" key
