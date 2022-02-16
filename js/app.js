@@ -192,10 +192,10 @@ function newPickup(){
 // Arrow key event listeners for snake movement
 function arrowMovement(evt){  
   // When ArrowUp is pressed, move snake up
-  clearInterval(startUp)
-  clearInterval(startLeft)
-  clearInterval(startRight)
   if (evt.key === 'ArrowUp' && snakeDirection !== "down") {
+    clearInterval(startUp)
+    clearInterval(startLeft)
+    clearInterval(startRight)
     // comparing positional change to occur vs. spaces available
     if (playGame === true){
       startUp = setInterval(() => {
@@ -304,7 +304,8 @@ function lose(){
   clearInterval(startDown)
   clearInterval(startLeft)
   clearInterval(startRight)
-  alert("Game over")
+  alert("Game over. Press 'Restart Game' to try again!")
+  playGame = false
 }
 
 // Light and dark mode functionality
