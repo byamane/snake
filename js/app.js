@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 
-const speed = 50;
+const speed = 75;
 
 const cellCount = 625
 
@@ -14,7 +14,7 @@ const rightCell = [24, 49, 74, 99, 124, 149, 174, 199, 224, 249, 274, 299, 324, 
 
 /*-------------------------------- Variables --------------------------------*/
 
-let playGame, stopGame, startUp, startDown, startLeft, startRight, score, highScore, cell, snakeColor, pickupColor, snakeTop, newTop, snakeDirection, change, bodyCrash
+let playGame, startUp, startDown, startLeft, startRight, score, highScore, cell, snakeColor, pickupColor, snakeTop, newTop, snakeDirection, change, bodyCrash
 
 let snake = []
 
@@ -108,11 +108,11 @@ function init(){
   currentScore.textContent = `Current Score: ${score}`
   highScore = null
   playGame = true
-  stopGame = false
   snake = [107, 106, 105]
   pickup = 393
   snakeColor = "green"
   pickupColor = "purple"
+  snakeDirection = null
   snakeTop = snake[0]
   
   clearCells()

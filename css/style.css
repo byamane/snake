@@ -61,8 +61,10 @@ body.dark {
 }
 
 main {
-  width: 700px;
+  width: 600px;
   height: 700px;
+  justify-content: center;
+  
 }
 
 
@@ -76,7 +78,7 @@ main {
   grid-column: 2;
   grid-row: 1;
   grid-template-columns: 1fr 1fr 1fr;
-}
+} */
 
 header > h1 {
   font-weight: 700;
@@ -89,10 +91,16 @@ header > h1 {
 #scores {
   background-color: rgb(210, 171, 255);
   border: 1.5px solid purple;
-  border-radius: 7px;
-} */
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3vh;
+  text-align: center;
+  margin: 0;
+}
 
-/* h2 {
+h2 {
   display: inline-block;
 }
 
@@ -110,7 +118,7 @@ header > h1 {
   margin-right: 10px;
   margin-top: 5px;
   margin-bottom: 5px;
-} */
+}
 
 .board {
   display: flex;
@@ -121,11 +129,11 @@ header > h1 {
   grid-column: 2;
   grid-row: 2;
   background-color: rgb(116, 116, 116);
-  margin-top: 2vh;
-  /* border: 2px solid black; */
-  /* border-radius: 7px; */
+  margin-top: 0vh;
   width: 600px;
   height: 600px;
+  justify-self: center;
+  align-self: center;
 
 }
 
@@ -168,7 +176,7 @@ header > h1 {
   font-size: 2vmin;
   text-align: center;
   vertical-align: middle;
-  margin-top: 5vh;
+  margin-top: 2vh;
   display: flex;
   justify-content: center;
   align-items: center;
