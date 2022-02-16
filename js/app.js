@@ -244,32 +244,32 @@ function arrowMovement(evt){
       }, speed)
     }
   }
-  // // When ArrowLeft is pressed, move snake left
-  // if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
-  //   // comparing positional change to occur vs. spaces available
-  //   clearInterval(startUp)
-  //   clearInterval(startDown)
-  //   clearInterval(startLeft)
-  //   if (playGame === true){
-  //     startLeft = setInterval(() => {
+  // When ArrowLeft is pressed, move snake left
+  if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
+    // comparing positional change to occur vs. spaces available
+    clearInterval(startUp)
+    clearInterval(startDown)
+    clearInterval(startLeft)
+    if (playGame === true){
+      startLeft = setInterval(() => {
       
-  //     if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop) && !snake.some((el => el === snakeTop - 1))){
-  //       // set variable snakeDirection to later determine where new snake pickups should be attached to
-  //       snakeDirection = "left"
-  //       change = -1
+      if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop) && !snake.some((el => el === snakeTop - 1))){
+        // set variable snakeDirection to later determine where new snake pickups should be attached to
+        snakeDirection = "left"
+        change = -1
 
-  //       newSnakeTop()
-  //       clearCells()
-  //       getSnake()
-  //       getPickup()
-  //       render()
-  //     }
-  //       else{
-  //         lose()
-  //       }
-  //     }, speed)
-  //   }
-  // }
+        newSnakeTop()
+        clearCells()
+        getSnake()
+        getPickup()
+        render()
+      }
+        else{
+          lose()
+        }
+      }, speed)
+    }
+  }
     
   // // When ArrowRight is pressed, move snake right
   // if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
