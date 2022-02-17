@@ -312,7 +312,7 @@ function arrowMovementKeys(evt){
 }
 
   // When ArrowDown is pressed, move snake down
-  if (evt.key === 'ArrowDown' && snakeDirection !== "up") {
+  if (evt.target.id === 'down' && snakeDirection !== "up") {
     // comparing positional change to occur vs. spaces available
     clearInterval(startDown)
     clearInterval(startLeft)
