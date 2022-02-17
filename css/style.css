@@ -20,11 +20,12 @@ html {
 body {
   --body-bg: #18b4fc;
   --btn-text-color: #2a2a2a;
-  --card-text-color: #3e3e3e;
   --header-bg: rgb(47, 32, 134);
   --header-text-color: #ffffff;
-  --inverted-btn-text-color: #eaeaea;
   --header-border-color: black;
+  --inverted-btn-text-color: #eaeaea;
+  --scores-bg-color: rgb(210, 171, 255);
+  --scores-border-color: purple;
   --button-border-color: white;
   --arrow-border-color: black;
   --light-dark-btn-bg: #1d1e2b;
@@ -49,10 +50,11 @@ body {
 body.dark {
   --body-bg: #22232b;
   --btn-text-color: #eaeaea;
-  --card-text-color: #dedede;
   --header-bg: #39db4e;
   --header-text-color: #000000;
   --inverted-btn-text-color: #2a2a2a;
+  --scores-bg-color: rgb(0, 217, 255);
+  --scores-border-color: rgb(14, 255, 255);
   --button-border-color: black;
   --header-border-color: white;
   --arrow-border-color: white;
@@ -90,8 +92,8 @@ h1 {
 
 
 #scores {
-  background-color: rgb(210, 171, 255);
-  border: 1.5px solid purple;
+  background-color: var(--scores-bg-color);
+  border: 1.5px solid var(--scores-border-color);
   width: 600px;
   display: flex;
   justify-content: center;
@@ -174,6 +176,7 @@ h2 {
   height: 80px;
   margin-top: 7px;
   font-size: 1.5rem;
+  font-weight: 500;
 }
 
 #light-dark-button::after {
@@ -181,16 +184,23 @@ h2 {
   color: var(--inverted-btn-text-color);
   content: var(--light-dark-btn-content);
 }
+#light-dark-button {
+  background-color: var(--light-dark-btn-bg);
+  background-image: var(--light-dark-btn-bg);
+  border: 3px solid var(--button-border-color);
+  width: 80px;
+  height: 80px;
+  margin-top: 7px;
+  font-size: 1.5rem;
+}
 
 #restart {
   border: 3px solid var(--button-border-color);
-  font-size: 1.5rem;
-  text-align: center;
-  vertical-align: right;
-  justify-content: right;
-  margin-top: 7px;
-  height: 80px;
   width: 80px;
+  height: 80px;
+  margin-top: 7px;
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 #arrow-up {
@@ -220,18 +230,15 @@ h2 {
     height: 80px;
   }
 
+  h1 {
+    width: 300px;
+    font-size: 50px;
+  }
+
   .board {
-    display: flex;
-    flex-wrap: wrap;
-    grid-gap: 0vmin;
-    grid-column: 2;
-    grid-row: 2;
-    background-color: rgb(116, 116, 116);
     margin-top: 0vh;
     width: 300px;
     height: 300px;
-    justify-self: center;
-    align-self: center;
   }
   
   .cell {
@@ -242,35 +249,32 @@ h2 {
   }
 
   #scores {
-    background-color: rgb(210, 171, 255);
-    border: 1.5px solid purple;
     width: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 5vh;
-    text-align: center;
     margin: 0;
   }
 
+  #light-dark-button {
+    height: 50px;
+    width: 80px;
+    margin-top: 12px;
+    font-size: 1.2rem;
+  }
+
   #restart {
-    font-size: 4vmin;
-    text-align: center;
-    vertical-align: middle;
-    margin-top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 8vh;
+    font-size: 1.2rem;
+    margin-top: 12px;
+    height: 50px;
+    width: 80px;
   }
 
   #current {
-    font-size: 14px;
+    font-size: 14.5px;
     text-align: center;
   }
 
   #highest {
-    font-size: 14px;
+    font-size: 14.5px;
     text-align: center;
   }
 
@@ -282,16 +286,10 @@ h2 {
 
   #arrow-up {
     height: 10vh;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
   }
   
   #arrow-left-down-right {
     height: 2vh;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     margin-top: 0.2vh;
   }
 }
