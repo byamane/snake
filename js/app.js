@@ -92,8 +92,8 @@ function init(){
   pickup = 393
   snakeColor = "green"
   pickupColor = "purple"
-  snakeDirection = null
   snakeTop = snake[0]
+  snakeDirection = null
   
   clearCells()
   getSnake()
