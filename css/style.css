@@ -183,8 +183,29 @@ h2 {
   height: 5vh;
 }
 
+#arrow-up {
+  height: 5vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#arrow-left-down-right {
+  height: 2vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 0.2vh;
+}
+
 .arrow {
   height: 5vh;
   width: 5vh;
   border: 2px solid black;
+  margin: 0 auto;
+  margin-top: 1vh;
+  display: inline-block;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 1000;
 }
