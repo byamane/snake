@@ -15,17 +15,18 @@ html {
    in most browser configurations this will be 10px */
 :root {
   font-size: 62.5%;
-  /* --cursive: 'Dancing Script', cursive;
-  --serif: 'Playfair Display', serif; */
 }
 
 body {
   --body-bg: #18b4fc;
   --btn-text-color: #2a2a2a;
   --card-text-color: #3e3e3e;
-  --header-bg: gray;
+  --header-bg: rgb(47, 32, 134);
   --header-text-color: #ffffff;
   --inverted-btn-text-color: #eaeaea;
+  --header-border-color: black;
+  --button-border-color: white;
+  --arrow-border-color: black;
   --light-dark-btn-bg: #1d1e2b;
   --light-dark-btn-content: "Dark Mode";
   background-color: var(--body-bg);
@@ -49,39 +50,44 @@ body.dark {
   --body-bg: #22232b;
   --btn-text-color: #eaeaea;
   --card-text-color: #dedede;
-  --header-bg: #00ff22;
+  --header-bg: #39db4e;
   --header-text-color: #000000;
   --inverted-btn-text-color: #2a2a2a;
+  --button-border-color: black;
+  --header-border-color: white;
+  --arrow-border-color: white;
   --light-dark-btn-bg: linear-gradient(to right top, #444655, #595b6b, #6f7181,
     #868898, #9ea0b0, #acaebe, #bbbccd, #cacbdc, #d2d4e5, #dadced, #e3e5f6, #ebeeff);
   --light-dark-btn-content: "Light Mode";
   background-color: var(--body-bg);
 }
 
-main {
-  width: 600px;
-  height: 600px;
-  justify-content: center;
-}
-
-
 header {
   background-color: var(--header-bg);
+  border: 3px solid var(--header-border-color);
   font-family: var(--serif);
   font-weight: 700;
-  margin: 1.2rem 0;
-  padding: 1.2rem;
+  margin: 1.2rem 0 0 0;
   display: flex;
+  justify-content: center;
+  height: 100px;
 }
 
 header > h1 {
   font-weight: 700;
   color: var(--header-text-color);
   margin: 1.2rem 0;
-  padding: 1.2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
 }
+
+h1 {
+  width: 400px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+}
+
 
 #scores {
   background-color: rgb(210, 171, 255);
@@ -140,20 +146,18 @@ h2 {
   border:1px solid var(--pickup-border);
   background-color: var(--pickup-background-color);
   opacity: 100%;
-  /* border-radius: 300px 150px 300px 150px; */
 }
 
 .snake {
   border:1px solid var(--snake-border);
   background-color: var(--snake-background-color);
   opacity: 100%;
-  /* border-radius: 200px 150px 150px 200px; */
 }
 
 .arrow {
   height: 5vh;
   width: 5vh;
-  border: 2px solid black;
+  border: 2px solid var(--arrow-border-color);
   margin: 0 auto;
   margin-top: 1vh;
   display: inline-block;
@@ -165,26 +169,28 @@ h2 {
 #light-dark-button {
   background-color: var(--light-dark-btn-bg);
   background-image: var(--light-dark-btn-bg);
+  border: 3px solid var(--button-border-color);
+  width: 80px;
+  height: 80px;
+  margin-top: 7px;
+  font-size: 1.5rem;
 }
 
 #light-dark-button::after {
   border: none;
   color: var(--inverted-btn-text-color);
   content: var(--light-dark-btn-content);
-  height: 5vh;
-  width: 5vh;
 }
 
 #restart {
-  border: 3px solid black;
-  font-size: 2vmin;
+  border: 3px solid var(--button-border-color);
+  font-size: 1.5rem;
   text-align: center;
-  vertical-align: middle;
-  margin-top: 2vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5vh;
+  vertical-align: right;
+  justify-content: right;
+  margin-top: 7px;
+  height: 80px;
+  width: 80px;
 }
 
 #arrow-up {
@@ -288,5 +294,4 @@ h2 {
     text-align: center;
     margin-top: 0.2vh;
   }
-
 }
