@@ -40,9 +40,27 @@ const body = document.querySelector("body")
 
 const lightDarkBtn = document.querySelector("#light-dark-button") 
 
+const up = document.getElementById("up")
+
+const left = document.getElementById("left")
+
+const down = document.getElementById("down")
+
+const right = document.getElementById("right")
+
 /*----------------------------- Event Listeners -----------------------------*/
 
-// onclick (for movement on virtual keypad)
+// onclick (to move up on virtual keypad)
+up.addEventListener("click", arrowMovementKeys)
+
+// onclick (to move up on virtual keypad)
+left.addEventListener("click", arrowMovementKeys)
+
+// onclick (to move up on virtual keypad)
+down.addEventListener("click", arrowMovementKeys)
+
+// onclick (to move up on virtual keypad)
+right.addEventListener("click", arrowMovementKeys)
 
 // restart (to reset game on click)
 restartBtn.addEventListener("click", restart)
@@ -57,53 +75,6 @@ document.addEventListener('keydown', arrowMovement)
 document.addEventListener('keydown', restartWithKeyPress) 
 
 /*-------------------------------- Functions --------------------------------*/
-
-// init(), play(), render(), currentScore(), highScore(), musicChange(), backgroundChange(), changeSnakeColor(), changePickupColor()
-
-/**************************************** User Stories *******************************************/
-
-// AAU I want to pick the color of my snake
-
-// AAU I want to pick the color/theme of snake pickups
-
-// AAU I want the option to either click on a virtual keypad or to press keys to move (virtual keypad allows mobile usability)
-
-// AAU I want to only have to click the keyboard once per direction change (no holding or mashing keys)
-
-// AAU I want to see my current score during game
-
-// AAU I want to track high score in-game with an icon (ex. trophy with 35 next to it)
-
-// AAU I want to be able to mute/unmute background music
-
-
-/**************************************** PSEUDOCODE *********************************************/
-
-// User win condition is achieving a new high score. Loss condition is reached when user crashes into barrier (either wall or its own body)
-
-// Game will start on "key down" and listen for any key down events to navigate the game board
-
-// Implement timer to determine "speed" of movement? (meaning tiny delay in milliseconds to execute move functions will make the shift in "snake body" div across the game board's squares appear as movement
-
-// Snake should move at a constant speed & be immediately responsive to key changes
-
-// Snake pickups should appear in random spots on the board
-
-// Upon the snake being at the same location of the pickup, add +1 starting div to end of snake
-
-// // Within the play function, when user crashes into wall or its own body, end the game
-
-// Within the render function, score-dependent popups via if statements (i.e. small confetti for a score of 10, fireworks for a score of 30)
-
-// Within the render function, change music based off higher score thresholds via if statements (example: calmer music in lower scores -> more intense music as score gets higher)
-
-// Within the render function, possibility to change background color theme/flashing colors to emphasize intensity in concert with music changes
-
-// Point total should be sum of total snake pickups
-
-// Highest score should remain on screen indefinitely even upon user resetting the game (only current score should reset)
-
-// Set a variable snakeIndex so that each arrow listener will just reference that variable, and not need to loop through the board each time before
 
 highScore = ""
 localStorage.setItem("high-score", highScore)
@@ -205,6 +176,116 @@ function newPickup(){
 function arrowMovement(evt){  
   // When ArrowUp is pressed, move snake up
   if (evt.key === 'ArrowUp' && snakeDirection !== "down") {
+    clearInterval(startUp)
+    clearInterval(startLeft)
+    clearInterval(startRight)
+    // comparing positional change to occur vs. spaces available
+    if (playGame === true){
+      startUp = setInterval(() => {
+      
+      if (snakeTop - numberOfColumns >= 0 && !snake.some((el => el === snakeTop - numberOfColumns))) {
+        // set variable snakeDirection to later determine where new snake pickups should be attached to
+        snakeDirection = "up"
+        change = -numberOfColumns
+
+        newSnakeTop()
+        clearCells()
+        getSnake()
+        getPickup()
+        render()
+      }
+        else{
+          lose()
+      }
+    }, speed)
+  }
+}
+
+  // When ArrowDown is pressed, move snake down
+  if (evt.key === 'ArrowDown' && snakeDirection !== "up") {
+    // comparing positional change to occur vs. spaces available
+    clearInterval(startDown)
+    clearInterval(startLeft)
+    clearInterval(startRight)
+    if (playGame === true){
+      startDown = setInterval(() => {
+      
+        if (snakeTop + numberOfColumns <= (numberOfRows * numberOfColumns) - 1 && !snake.some((el => el === snakeTop + numberOfColumns))) {
+        // set variable snakeDirection to later determine where new snake pickups should be attached to
+        snakeDirection = "down"
+        change = numberOfColumns
+      
+        newSnakeTop()
+        clearCells()
+        getSnake()
+        getPickup()
+        render()
+      }
+        else {
+          lose()
+        }
+      }, speed)
+    }
+  }
+  // When ArrowLeft is pressed, move snake left
+  if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
+    // comparing positional change to occur vs. spaces available
+    clearInterval(startUp)
+    clearInterval(startDown)
+    clearInterval(startLeft)
+    if (playGame === true){
+      startLeft = setInterval(() => {
+      
+      if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop) && !snake.some((el => el === snakeTop - 1))){
+        // set variable snakeDirection to later determine where new snake pickups should be attached to
+        snakeDirection = "left"
+        change = -1
+
+        newSnakeTop()
+        clearCells()
+        getSnake()
+        getPickup()
+        render()
+      }
+        else{
+          lose()
+        }
+      }, speed)
+    }
+  }
+    
+  // When ArrowRight is pressed, move snake right
+  if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
+    // comparing positional change to occur vs. spaces available
+    clearInterval(startUp)
+    clearInterval(startDown)
+    clearInterval(startRight)
+      if (playGame === true){
+        startRight = setInterval(() => {
+        
+        if (snakeTop + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeTop) && !snake.some((el => el === snakeTop + 1))){
+          // set variable snakeDirection to later determine where new snake pickups should be attached to
+          snakeDirection = "right"
+          change = 1
+
+          newSnakeTop()
+          clearCells()
+          getSnake()
+          getPickup()
+          render()
+        }
+        else{
+          lose()
+        }
+      }, speed)
+    }
+  }
+}
+
+// Arrow key event listeners for snake movement
+function arrowMovementKeys(evt){  
+  // When ArrowUp is pressed, move snake up
+  if (evt.target.id === 'up' && snakeDirection !== "down") {
     clearInterval(startUp)
     clearInterval(startLeft)
     clearInterval(startRight)
