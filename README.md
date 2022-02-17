@@ -1,6 +1,6 @@
  #  Snake 🐍 
 
-![A partially completed game of Snake on a 25x25 board.](https://i.imgur.com/IeQOEi3.png)
+![A partially completed game of Snake on a 25x25 board.](https://i.imgur.com/gtlfkz8.png)
 
  Enter the world of Snake! 🐍 
  
@@ -38,4 +38,5 @@
 
 ### Credits 🎥
 
-- Credits to [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/) 
+- [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/) 
+- [Flaticon](https://www.flaticon.com/free-icons/snake)
