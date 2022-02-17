@@ -23,7 +23,7 @@
 
 ## Recent Changes 🔍
 
-- Adding virtual keypad to the game, primarily for playability on mobile devices
+- Added virtual keypad to the game, primarily for playability on mobile devices
 
 ## Ice Box 🥶
 
