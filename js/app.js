@@ -364,8 +364,8 @@ function arrowMovementKeys(evt){
     }
   }
     
-  // When right arrow is pressed, move snake right
-  if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
+  // When right arrow on keypad is clicked, move snake right
+  if (evt.target.id === 'right' && snakeDirection !== "left") {
     // comparing positional change to occur vs. spaces available
     clearInterval(startUp)
     clearInterval(startDown)
