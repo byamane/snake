@@ -182,3 +182,8 @@ h2 {
   align-items: center;
   height: 5vh;
 }
+
+#arrow-buttons {
+  height: 10vh;
+  width: 10vh;
+}
