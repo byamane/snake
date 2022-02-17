@@ -183,7 +183,8 @@ h2 {
   height: 5vh;
 }
 
-#arrow-buttons {
-  height: 10vh;
-  width: 10vh;
+.arrow {
+  height: 5vh;
+  width: 5vh;
+  border: 2px solid black;
 }

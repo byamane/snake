@@ -45,7 +45,7 @@ const lightDarkBtn = document.querySelector("#light-dark-button")
 // onclick (for movement on virtual keypad)
 
 // restart (to reset game on click)
-restartBtn.addEventListener("click", init)
+restartBtn.addEventListener("click", restart)
 
 // light/dark mode
 lightDarkBtn.addEventListener("click", toggleLightDark)
@@ -332,15 +332,20 @@ function getHighScore(){
     }
   }
 
+// restart functionality both on click & key press
+function restart(){
+  clearInterval(startUp)
+  clearInterval(startDown)
+  clearInterval(startLeft)
+  clearInterval(startRight)
+  playGame = false
+  init()
+}
+
 // restart game by pressing "space" key
 function restartWithKeyPress(evt){
   if (evt.key === ' '){
-    clearInterval(startUp)
-    clearInterval(startDown)
-    clearInterval(startLeft)
-    clearInterval(startRight)
-    playGame = false
-    init()
+    restart()
   }
 }
 
