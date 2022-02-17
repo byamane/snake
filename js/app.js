@@ -1,6 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
 
-const speed = 70;
+const speed = 70
 
 const cellCount = 625
 
@@ -18,11 +18,11 @@ const myStorage = window.localStorage
 
 /*-------------------------------- Variables --------------------------------*/
 
-let playGame, startUp, startDown, startLeft, startRight, score, highScore, cell, snakeColor, pickupColor, snakeTop, newTop, snakeDirection, change, bodyCrash
+let playGame, startUp, startDown, startLeft, startRight, score, highScore, cell, snakeColor, pickupColor, snakeTop, newTop, snakeDirection, change
 
 let snake = []
 
-let board = [] // (will be full of null squares with one square holding the value the pickup will be assigned to)
+let board = []
 
 /*------------------------ Cached Element References ------------------------*/
 
@@ -51,28 +51,28 @@ const right = document.getElementById("right")
 /*----------------------------- Event Listeners -----------------------------*/
 
 // onclick (to move up on virtual keypad)
-up.addEventListener("click", arrowMovementKeys)
+up.addEventListener("click", keypadMovement)
 
-// onclick (to move up on virtual keypad)
-left.addEventListener("click", arrowMovementKeys)
+// onclick (to move left on virtual keypad)
+left.addEventListener("click", keypadMovement)
 
-// onclick (to move up on virtual keypad)
-down.addEventListener("click", arrowMovementKeys)
+// onclick (to move down on virtual keypad)
+down.addEventListener("click", keypadMovement)
 
-// onclick (to move up on virtual keypad)
-right.addEventListener("click", arrowMovementKeys)
-
-// restart (to reset game on click)
-restartBtn.addEventListener("click", restart)
-
-// light/dark mode
-lightDarkBtn.addEventListener("click", toggleLightDark)
+// onclick (to move right on virtual keypad)
+right.addEventListener("click", keypadMovement)
 
 // keydown (for movement via keyboard)
 document.addEventListener('keydown', arrowMovement)
 
+// restart (to reset game on click)
+restartBtn.addEventListener("click", restart)
+
 // keydown (for restart via keyboard)
 document.addEventListener('keydown', restartWithKeyPress) 
+
+// light/dark mode
+lightDarkBtn.addEventListener("click", toggleLightDark)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -81,6 +81,7 @@ localStorage.setItem("high-score", highScore)
 gameBoard()
 init()
 
+// Start & restart game settings
 function init(){
   score = 0
   currentScore.textContent = `Current Score: ${score}`
@@ -100,6 +101,7 @@ function init(){
   render()
   }
 
+// Mid-game graphical adjustments
 function render(){
   getSnake()
   if (pickup === snakeTop){
@@ -138,6 +140,7 @@ function getSnake(){
   })
 }
 
+// Sets the styling for empty cells
 function clearCells(){
   board.forEach((el) => {
     el.style.backgroundColor = "rgb(116, 116, 116)"
@@ -164,6 +167,7 @@ function newSnakeTop(){
   snakeTop = snake[0]
 }
 
+// Generates new pickup at random on the game board
 function newPickup(){
   pickup = Math.floor(Math.random() * cellCount)
   if (snake.some(index => index === pickup)){
@@ -283,7 +287,7 @@ function arrowMovement(evt){
 }
 
 // Virtual keypad click event listeners for snake movement
-function arrowMovementKeys(evt){  
+function keypadMovement(evt){  
   // When up arrow on keypad is clicked, move snake up
   if (evt.target.id === 'up' && snakeDirection !== "down") {
     clearInterval(startUp)
@@ -392,6 +396,7 @@ function arrowMovementKeys(evt){
   }
 }
 
+// Ran on game end either by wall or body crash
 function lose(){
   clearInterval(startUp)
   clearInterval(startDown)
@@ -402,6 +407,7 @@ function lose(){
   playGame = false
 }
 
+// High score functionality
 function getHighScore(){
     if (score > highScore) {
       highScore = score
@@ -413,7 +419,7 @@ function getHighScore(){
     }
   }
 
-// restart functionality both on click & key press
+// Restart functionality both on click & key press
 function restart(){
   clearInterval(startUp)
   clearInterval(startDown)
@@ -423,7 +429,7 @@ function restart(){
   init()
 }
 
-// restart game by pressing "space" key
+// Restart game by pressing "space" key
 function restartWithKeyPress(evt){
   if (evt.key === ' '){
     restart()
