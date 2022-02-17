@@ -282,9 +282,9 @@ function arrowMovement(evt){
   }
 }
 
-// Arrow key event listeners for snake movement
+// Virtual keypad click event listeners for snake movement
 function arrowMovementKeys(evt){  
-  // When ArrowUp is pressed, move snake up
+  // When up arrow on keypad is clicked, move snake up
   if (evt.target.id === 'up' && snakeDirection !== "down") {
     clearInterval(startUp)
     clearInterval(startLeft)
@@ -311,7 +311,7 @@ function arrowMovementKeys(evt){
   }
 }
 
-  // When ArrowDown is pressed, move snake down
+  // When down arrow on keypad is clicked, move snake down
   if (evt.target.id === 'down' && snakeDirection !== "up") {
     // comparing positional change to occur vs. spaces available
     clearInterval(startDown)
@@ -337,8 +337,8 @@ function arrowMovementKeys(evt){
       }, speed)
     }
   }
-  // When ArrowLeft is pressed, move snake left
-  if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
+  // When left arrow on keypad is clicked, move snake left
+  if (evt.target.id === 'left' && snakeDirection !== "right") {
     // comparing positional change to occur vs. spaces available
     clearInterval(startUp)
     clearInterval(startDown)
@@ -364,7 +364,7 @@ function arrowMovementKeys(evt){
     }
   }
     
-  // When ArrowRight is pressed, move snake right
+  // When right arrow is pressed, move snake right
   if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
     // comparing positional change to occur vs. spaces available
     clearInterval(startUp)
