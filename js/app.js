@@ -232,7 +232,7 @@ function arrowMovement(evt){
     }
   }
   // When ArrowLeft is pressed, move snake left
-  if (evt.key === 'ArrowLeft' && snakeDirection !== "right") {
+  if (evt.key === 'ArrowLeft' && snakeDirection !== "right" && snakeDirection !== null) {
     // comparing positional change to occur vs. spaces available
     clearInterval(startUp)
     clearInterval(startDown)
@@ -342,7 +342,7 @@ function keypadMovement(evt){
     }
   }
   // When left arrow on keypad is clicked, move snake left
-  if (evt.target.id === 'left' && snakeDirection !== "right") {
+  if (evt.target.id === 'left' && snakeDirection !== "right" && snakeDirection !== null) {
     // comparing positional change to occur vs. spaces available
     clearInterval(startUp)
     clearInterval(startDown)
