@@ -23,8 +23,8 @@ body {
   --body-bg: #18b4fc;
   --btn-text-color: #2a2a2a;
   --card-text-color: #3e3e3e;
-  --header-bg: #fbfdff;
-  --header-text-color: #d8d8d8;
+  --header-bg: gray;
+  --header-text-color: #ffffff;
   --inverted-btn-text-color: #eaeaea;
   --light-dark-btn-bg: #1d1e2b;
   --light-dark-btn-content: "Dark Mode";
@@ -50,7 +50,7 @@ body.dark {
   --btn-text-color: #eaeaea;
   --card-text-color: #dedede;
   --header-bg: #00ff22;
-  --header-text-color: #d8d8d8;
+  --header-text-color: #000000;
   --inverted-btn-text-color: #2a2a2a;
   --light-dark-btn-bg: linear-gradient(to right top, #444655, #595b6b, #6f7181,
     #868898, #9ea0b0, #acaebe, #bbbccd, #cacbdc, #d2d4e5, #dadced, #e3e5f6, #ebeeff);
@@ -76,6 +76,7 @@ header {
 
 header > h1 {
   font-weight: 700;
+  color: var(--header-text-color);
   margin: 1.2rem 0;
   padding: 1.2rem;
   display: grid;
@@ -201,11 +202,16 @@ h2 {
   margin-top: 0.2vh;
 }
 
-/* @media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px){
   main {
     width: 300px;
-    height: 300px;
+    height: 500px;
     justify-content: center;
+  }
+
+  header {
+    width: 300px;
+    height: 80px;
   }
 
   .board {
@@ -236,8 +242,51 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 3vh;
+    height: 5vh;
     text-align: center;
     margin: 0;
   }
-} */
+
+  #restart {
+    font-size: 4vmin;
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+  }
+
+  #current {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  #highest {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .arrow {
+    margin-top: 2vh;
+    height: 10vh;
+    width: 10vh;
+  }
+
+  #arrow-up {
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  #arrow-left-down-right {
+    height: 2vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 0.2vh;
+  }
+
+}
