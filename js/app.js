@@ -99,7 +99,7 @@ function init(){
   getSnake()
   getPickup()
   render()
-  }
+}
 
 // Mid-game graphical adjustments
 function render(){
@@ -112,7 +112,6 @@ function render(){
     newPickup()
     getPickup()
   }
-
 }
 
 // Creating a gameBoard via the DOM based off variable cellCount
@@ -183,76 +182,76 @@ function arrowMovement(evt){
     clearInterval(startUp)
     clearInterval(startLeft)
     clearInterval(startRight)
-    // comparing positional change to occur vs. spaces available
-    if (playGame === true){
-      startUp = setInterval(() => {
-      
-      if (snakeTop - numberOfColumns >= 0 && !snake.some((el => el === snakeTop - numberOfColumns))) {
-        // set variable snakeDirection to later determine where new snake pickups should be attached to
-        snakeDirection = "up"
-        change = -numberOfColumns
+      // while game is active, run this at an interval of "speed" until new input is made
+      if (playGame === true){
+        startUp = setInterval(() => {
+        
+        // checks if snake will crash into any of the walls or its own body before moving
+        if (snakeTop - numberOfColumns >= 0 && !snake.some((el => el === snakeTop - numberOfColumns))) {
+          snakeDirection = "up"
+          change = -numberOfColumns
 
-        newSnakeTop()
-        clearCells()
-        getSnake()
-        getPickup()
-        render()
-      }
-        else{
-          lose()
-      }
-    }, speed)
+          newSnakeTop()
+          clearCells()
+          getSnake()
+          getPickup()
+          render()
+        }
+          else{
+            lose()
+        }
+      }, speed)
+    }
   }
-}
 
   // When ArrowDown is pressed, move snake down
   if (evt.key === 'ArrowDown' && snakeDirection !== "up") {
-    // comparing positional change to occur vs. spaces available
     clearInterval(startDown)
     clearInterval(startLeft)
     clearInterval(startRight)
-    if (playGame === true){
-      startDown = setInterval(() => {
+      // while game is active, run this at an interval of "speed" until new input is made
+      if (playGame === true){
+        startDown = setInterval(() => {
       
+        // checks if snake will crash into any of the walls or its own body before moving
         if (snakeTop + numberOfColumns <= (numberOfRows * numberOfColumns) - 1 && !snake.some((el => el === snakeTop + numberOfColumns))) {
-        // set variable snakeDirection to later determine where new snake pickups should be attached to
-        snakeDirection = "down"
-        change = numberOfColumns
-      
-        newSnakeTop()
-        clearCells()
-        getSnake()
-        getPickup()
-        render()
-      }
-        else {
-          lose()
+          snakeDirection = "down"
+          change = numberOfColumns
+          
+          newSnakeTop()
+          clearCells()
+          getSnake()
+          getPickup()
+          render()
+        }
+          else {
+            lose()
         }
       }, speed)
     }
   }
   // When ArrowLeft is pressed, move snake left
   if (evt.key === 'ArrowLeft' && snakeDirection !== "right" && snakeDirection !== null) {
-    // comparing positional change to occur vs. spaces available
     clearInterval(startUp)
     clearInterval(startDown)
     clearInterval(startLeft)
-    if (playGame === true){
-      startLeft = setInterval(() => {
-      
-      if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop) && !snake.some((el => el === snakeTop - 1))){
-        // set variable snakeDirection to later determine where new snake pickups should be attached to
-        snakeDirection = "left"
-        change = -1
+      // while game is active, run this at an interval of "speed" until new input is made
+      if (playGame === true){
+        startLeft = setInterval(() => {
+        
+        // checks if snake will crash into any of the walls or its own body before moving
+        if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop) && !snake.some((el => el === snakeTop - 1))){
+          snakeDirection = "left"
+          change = -1
 
-        newSnakeTop()
-        clearCells()
-        getSnake()
-        getPickup()
-        render()
-      }
-        else{
-          lose()
+          newSnakeTop()
+          clearCells()
+          getSnake()
+          getPickup()
+          render()
+        }
+          else{
+            lose()
         }
       }, speed)
     }
@@ -260,15 +259,15 @@ function arrowMovement(evt){
     
   // When ArrowRight is pressed, move snake right
   if (evt.key === 'ArrowRight' && snakeDirection !== "left") {
-    // comparing positional change to occur vs. spaces available
     clearInterval(startUp)
     clearInterval(startDown)
     clearInterval(startRight)
+      // while game is active, run this at an interval of "speed" until new input is made
       if (playGame === true){
         startRight = setInterval(() => {
         
+        // checks if snake will crash into any of the walls or its own body before moving
         if (snakeTop + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeTop) && !snake.some((el => el === snakeTop + 1))){
-          // set variable snakeDirection to later determine where new snake pickups should be attached to
           snakeDirection = "right"
           change = 1
 
@@ -278,8 +277,8 @@ function arrowMovement(evt){
           getPickup()
           render()
         }
-        else{
-          lose()
+          else{
+            lose()
         }
       }, speed)
     }
@@ -293,76 +292,77 @@ function keypadMovement(evt){
     clearInterval(startUp)
     clearInterval(startLeft)
     clearInterval(startRight)
-    // comparing positional change to occur vs. spaces available
-    if (playGame === true){
-      startUp = setInterval(() => {
-      
-      if (snakeTop - numberOfColumns >= 0 && !snake.some((el => el === snakeTop - numberOfColumns))) {
-        // set variable snakeDirection to later determine where new snake pickups should be attached to
-        snakeDirection = "up"
-        change = -numberOfColumns
+      // while game is active, run this at an interval of "speed" until new input is made
+      if (playGame === true){
+        startUp = setInterval(() => {
+        
+        // checks if snake will crash into any of the walls or its own body before moving
+        if (snakeTop - numberOfColumns >= 0 && !snake.some((el => el === snakeTop - numberOfColumns))) {
+          snakeDirection = "up"
+          change = -numberOfColumns
 
-        newSnakeTop()
-        clearCells()
-        getSnake()
-        getPickup()
-        render()
-      }
-        else{
-          lose()
-      }
-    }, speed)
-  }
-}
-
-  // When down arrow on keypad is clicked, move snake down
-  if (evt.target.id === 'down' && snakeDirection !== "up") {
-    // comparing positional change to occur vs. spaces available
-    clearInterval(startDown)
-    clearInterval(startLeft)
-    clearInterval(startRight)
-    if (playGame === true){
-      startDown = setInterval(() => {
-      
-        if (snakeTop + numberOfColumns <= (numberOfRows * numberOfColumns) - 1 && !snake.some((el => el === snakeTop + numberOfColumns))) {
-        // set variable snakeDirection to later determine where new snake pickups should be attached to
-        snakeDirection = "down"
-        change = numberOfColumns
-      
-        newSnakeTop()
-        clearCells()
-        getSnake()
-        getPickup()
-        render()
-      }
-        else {
-          lose()
+          newSnakeTop()
+          clearCells()
+          getSnake()
+          getPickup()
+          render()
+        }
+          else{
+            lose()
         }
       }, speed)
     }
   }
+
+  // When down arrow on keypad is clicked, move snake down
+  if (evt.target.id === 'down' && snakeDirection !== "up") {
+    clearInterval(startDown)
+    clearInterval(startLeft)
+    clearInterval(startRight)
+      // while game is active, run this at an interval of "speed" until new input is made
+      if (playGame === true){
+        startDown = setInterval(() => {
+      
+        // checks if snake will crash into any of the walls or its own body before moving
+        if (snakeTop + numberOfColumns <= (numberOfRows * numberOfColumns) - 1 && !snake.some((el => el === snakeTop + numberOfColumns))) {
+          snakeDirection = "down"
+          change = numberOfColumns
+          
+          newSnakeTop()
+          clearCells()
+          getSnake()
+          getPickup()
+          render()
+        }
+          else {
+            lose()
+        }
+      }, speed)
+    }
+  }
+  
   // When left arrow on keypad is clicked, move snake left
   if (evt.target.id === 'left' && snakeDirection !== "right" && snakeDirection !== null) {
-    // comparing positional change to occur vs. spaces available
     clearInterval(startUp)
     clearInterval(startDown)
     clearInterval(startLeft)
-    if (playGame === true){
-      startLeft = setInterval(() => {
-      
-      if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop) && !snake.some((el => el === snakeTop - 1))){
-        // set variable snakeDirection to later determine where new snake pickups should be attached to
-        snakeDirection = "left"
-        change = -1
+      // while game is active, run this at an interval of "speed" until new input is made
+      if (playGame === true){
+        startLeft = setInterval(() => {
+        
+        // checks if snake will crash into any of the walls or its own body before moving
+        if (snakeTop - 1 >= 0 && !leftCell.includes(snakeTop) && !snake.some((el => el === snakeTop - 1))){
+          snakeDirection = "left"
+          change = -1
 
-        newSnakeTop()
-        clearCells()
-        getSnake()
-        getPickup()
-        render()
-      }
-        else{
-          lose()
+          newSnakeTop()
+          clearCells()
+          getSnake()
+          getPickup()
+          render()
+        }
+          else{
+            lose()
         }
       }, speed)
     }
@@ -370,15 +370,15 @@ function keypadMovement(evt){
     
   // When right arrow on keypad is clicked, move snake right
   if (evt.target.id === 'right' && snakeDirection !== "left") {
-    // comparing positional change to occur vs. spaces available
     clearInterval(startUp)
     clearInterval(startDown)
     clearInterval(startRight)
+      // while game is active, run this at an interval of "speed" until new input is made
       if (playGame === true){
         startRight = setInterval(() => {
         
+        // checks if snake will crash into any of the walls or its own body before moving 
         if (snakeTop + 1 <= (numberOfRows * numberOfColumns) - 1 && !rightCell.includes(snakeTop) && !snake.some((el => el === snakeTop + 1))){
-          // set variable snakeDirection to later determine where new snake pickups should be attached to
           snakeDirection = "right"
           change = 1
 
@@ -388,8 +388,8 @@ function keypadMovement(evt){
           getPickup()
           render()
         }
-        else{
-          lose()
+          else{
+            lose()
         }
       }, speed)
     }
@@ -409,15 +409,15 @@ function lose(){
 
 // High score functionality
 function getHighScore(){
-    if (score > highScore) {
-      highScore = score
-      localStorage.setItem("high-score", highScore)
-      highestScore.textContent = `Highest Score: ${highScore}`     
-    } else{
-      localStorage.setItem("high-score", highScore);
-      highestScore.textContent = `Highest Score: ${highScore}` 
-    }
+  if (score > highScore) {
+    highScore = score
+    localStorage.setItem("high-score", highScore)
+    highestScore.textContent = `Highest Score: ${highScore}`     
+  } else{
+    localStorage.setItem("high-score", highScore);
+    highestScore.textContent = `Highest Score: ${highScore}` 
   }
+}
 
 // Restart functionality both on click & key press
 function restart(){
